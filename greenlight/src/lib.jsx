@@ -4,7 +4,13 @@ export class ApiError extends Error {
   constructor(message, status) { super(message); this.status = status; }
 }
 
+export const DEMO = Boolean(import.meta.env.VITE_DEMO);
+
 export async function api(path, { method = 'GET', body } = {}) {
+  if (DEMO) {
+    const { demoApi } = await import('./demo/backend.js');
+    return demoApi(path, { method, body: body && JSON.parse(JSON.stringify(body)) });
+  }
   const res = await fetch(`/api${path}`, {
     method,
     headers: body ? { 'Content-Type': 'application/json' } : undefined,

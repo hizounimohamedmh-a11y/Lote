@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { api, Icon, Orb, useCountUp, go } from '../lib.jsx';
+import { api, Icon, Orb, useCountUp, go, DEMO } from '../lib.jsx';
 import { useSession } from '../App.jsx';
 
 const HEX = { green: '#1fd17a', yellow: '#ffc233', red: '#ff4d4f' };
@@ -74,6 +74,11 @@ export default function Result({ check, reveal = false }) {
       const file = new File([blob], `greenlight-${check.day}.png`, { type: 'image/png' });
       if (navigator.canShare?.({ files: [file] })) {
         await navigator.share({ files: [file], text: `I'm ${WORD[check.color]} today on GreenLight.` });
+      } else if (DEMO) {
+        const downloads = window.claude?.use ? await window.claude.use('downloads').catch(() => null) : null;
+        if (!downloads) { setShareMsg('Saving images isn’t available here.'); return; }
+        await downloads.save({ filename: file.name, data: blob });
+        setShareMsg('Image saved. Post it to your story.');
       } else {
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob); a.download = file.name; a.click();

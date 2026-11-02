@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { api, useApi, Spinner, ErrorBox, Icon, localDay, go } from '../lib.jsx';
+import { api, useApi, Spinner, ErrorBox, Icon, localDay, go, DEMO } from '../lib.jsx';
 import { useSession } from '../App.jsx';
 import { SPORTS, regionLabel } from '../../shared/content.js';
 
@@ -156,6 +156,19 @@ function TeamList({ joinCode }) {
 }
 
 export default function Team({ id }) {
+  if (DEMO) {
+    return (
+      <div className="stack" style={{ gap: 18 }}>
+        <h1 style={{ fontSize: 48 }}>Team</h1>
+        <div className="card stack" style={{ gap: 10 }}>
+          <span className="label">For coaches</span>
+          <h3>Your whole squad’s lights before training</h3>
+          <p className="muted">Coaches create a team and share a 6-letter code. Every player’s light, score and sore spots show up on one screen, worst first, with a warning for anyone who should see a physio.</p>
+          <p className="small muted">Team dashboards need the full GreenLight app, because players’ checks are shared with the coach.</p>
+        </div>
+      </div>
+    );
+  }
   const join = window.location.hash.match(/#\/team\/join\/([A-Z0-9]{6})/i)?.[1];
   if (join) return <TeamList joinCode={join.toUpperCase()} />;
   return id ? <Roster key={id} id={id} /> : <TeamList />;

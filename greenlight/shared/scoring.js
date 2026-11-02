@@ -298,3 +298,25 @@ export const COLOR_COPY = {
   yellow: { word: 'Yellow', short: 'Easy' },
   red: { word: 'Red', short: 'Rest' },
 };
+
+// Sort each frame of one continuous recording into the move being done.
+export function segment(frames) {
+  const squat = []; const balL = []; const balR = []; const reach = [];
+  for (const f of frames) {
+    const v = (i) => f.img[i][2] > 0.5;
+    const torso = Math.abs((f.img[LM.lShoulder][1] + f.img[LM.rShoulder][1]) / 2 - (f.img[LM.lHip][1] + f.img[LM.rHip][1]) / 2) || 0.2;
+    const armsUp = v(LM.lWrist) && v(LM.rWrist) && v(LM.nose) && f.img[LM.lWrist][1] < f.img[LM.nose][1] && f.img[LM.rWrist][1] < f.img[LM.nose][1];
+    const footDiff = (f.img[LM.lAnkle][1] - f.img[LM.rAnkle][1]) / torso; // + = right foot higher
+    if (armsUp) reach.push(f);
+    else if (v(LM.lAnkle) && v(LM.rAnkle) && footDiff > 0.15) balL.push(f); // standing on left
+    else if (v(LM.lAnkle) && v(LM.rAnkle) && footDiff < -0.15) balR.push(f);
+    else squat.push(f);
+  }
+  return {
+    squat: squatMetrics(squat),
+    balanceL: balanceMetrics(balL, 'left'),
+    balanceR: balanceMetrics(balR, 'right'),
+    reach: reachMetrics(reach),
+  };
+}
+

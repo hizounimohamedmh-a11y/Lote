@@ -8,8 +8,14 @@ export function loadPose() {
   if (!loading) {
     loading = (async () => {
       const fileset = await FilesetResolver.forVisionTasks(`${BASE}wasm`);
+      // The link build ships the model as base64 text (the only way it can be hosted there).
+      let modelAssetBuffer = null;
+      if (import.meta.env.VITE_DEMO) {
+        const b64 = (await (await fetch(`${BASE}models/pose_landmarker_lite.txt`)).text()).trim();
+        modelAssetBuffer = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+      }
       const opts = (delegate) => ({
-        baseOptions: { modelAssetPath: `${BASE}models/pose_landmarker_lite.task`, delegate },
+        baseOptions: modelAssetBuffer ? { modelAssetBuffer, delegate } : { modelAssetPath: `${BASE}models/pose_landmarker_lite.task`, delegate },
         runningMode: 'VIDEO',
         numPoses: 1,
         minPoseDetectionConfidence: 0.5,

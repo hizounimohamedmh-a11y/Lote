@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { api, go, Icon, localDay, Orb } from '../lib.jsx';
+import { api, go, Icon, localDay, Orb, DEMO } from '../lib.jsx';
 import { QUESTIONS, RED_FLAGS } from '../../shared/content.js';
 import BodyMap from '../components/BodyMap.jsx';
 import Scan from '../components/Scan.jsx';
+import VideoScan from '../components/VideoScan.jsx';
 
 const EMOJI = { sleep: ['😵', '😐', '😴'], energy: ['🪫', '😮‍💨', '🙂', '💪', '🔥'], load: ['🛋️', '🚶', '🏋️', '🏟️'] };
 
@@ -106,7 +107,8 @@ export default function Check({ onFinished }) {
           </>
         )}
 
-        {step === 3 && (
+        {step === 3 && DEMO && <VideoScan onDone={submit} onSkip={() => submit(null)} />}
+        {step === 3 && !DEMO && (
           <>
             <div className="stack" style={{ gap: 6 }}>
               <h2>30-second movement scan</h2>
@@ -133,6 +135,7 @@ export default function Check({ onFinished }) {
             {error && <div className="alert">{error}</div>}
           </div>
         )}
+        {step === 3 && DEMO && error && <div className="alert">{error}</div>}
       </div>
     </div>
   );

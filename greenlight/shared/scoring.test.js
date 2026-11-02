@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { squatMetrics, balanceMetrics, reachMetrics, buildBaseline, assess, buildPlan, angle, LM } from './scoring.js';
+import { squatMetrics, balanceMetrics, reachMetrics, buildBaseline, assess, buildPlan, angle, LM, segment } from './scoring.js';
 
 // Build a synthetic person facing the camera. Knee flexion in degrees per leg,
 // arm angle (shoulder flexion) per side, foot lift for balance, hip shift for sway.
@@ -130,4 +130,19 @@ test('assess: a sore spot is never green', () => {
   assert.ok(r.score <= 74);
   const stiff = assess({ answers: { sleep: 3, energy: 5, load: 0 }, soreness: { right_knee: 3 } });
   assert.equal(stiff.color, 'green', 'a bit stiff is still fine');
+});
+
+test('segment: one recording with all four moves is split correctly', () => {
+  const head = (f) => { f.img[LM.nose] = [0.5, 0.2, 0.95]; f.img[LM.lWrist] = [0.42, 0.5, 0.95]; f.img[LM.rWrist] = [0.58, 0.5, 0.95]; return f; };
+  const withArmsUp = (f) => { f.img[LM.lWrist] = [0.45, 0.1, 0.95]; f.img[LM.rWrist] = [0.55, 0.1, 0.95]; f.img[LM.nose] = [0.5, 0.2, 0.95]; return f; };
+  const frames = [
+    ...squatFrames({ depthL: 100, depthR: 100 }).map((f) => { f.img[LM.nose] = [0.5, 0.2, 0.95]; return f; }),
+    ...Array.from({ length: 40 }, (_, i) => head(frame({ liftR: 0.1, shift: 0.003 * Math.sin(i) }))),
+    ...Array.from({ length: 40 }, (_, i) => head(frame({ liftL: 0.1, shift: 0.003 * Math.sin(i) }))),
+    ...Array.from({ length: 20 }, () => withArmsUp(frame({ armL: 170, armR: 165 }))),
+  ];
+  const r = segment(frames);
+  assert.equal(r.squat.ok, true); assert.equal(r.squat.reps, 3);
+  assert.equal(r.balanceL.ok, true); assert.equal(r.balanceR.ok, true);
+  assert.equal(r.reach.ok, true);
 });
