@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lote · German for your job in Germany</title>
+<meta name="description" content="Daily live classes, an AI speaking partner and exam prep to get you from A1 to B2 and into a job in Germany.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --text: #17181c;
+    --muted: #5d606b;
+    --line: #e7e4dc;
+    --accent: #d9462b;
+    --accent-ink: #ffffff;
+    --accent-soft: #fdebe6;
+    --ok: #1f7a4d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111216;
+      --surface: #1a1c21;
+      --text: #f1f0ec;
+      --muted: #a3a6b0;
+      --line: #2c2f36;
+      --accent: #ff6a4d;
+      --accent-ink: #1a0b07;
+      --accent-soft: #2b1712;
+      --ok: #5cc894;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111216; --surface: #1a1c21; --text: #f1f0ec; --muted: #a3a6b0;
+    --line: #2c2f36; --accent: #ff6a4d; --accent-ink: #1a0b07; --accent-soft: #2b1712; --ok: #5cc894;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    line-height: 1.55; font-size: 17px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  a { color: inherit; }
+  header.top { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .logo { font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+  .logo span { color: var(--accent); }
+  .btn {
+    display: inline-block; background: var(--accent); color: var(--accent-ink);
+    font-weight: 600; text-decoration: none; border: 0; cursor: pointer;
+    padding: 14px 22px; border-radius: 10px; font-size: 16px; font-family: inherit;
+  }
+  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .hero { padding: 48px 0 56px; display: grid; gap: 40px; grid-template-columns: 1.15fr 0.85fr; align-items: center; }
+  .eyebrow { display: inline-block; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: 14px; padding: 6px 12px; border-radius: 999px; }
+  h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.05; letter-spacing: -0.03em; margin: 18px 0 18px; font-weight: 800; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 34em; margin: 0 0 28px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .progress-card h3 { margin: 0 0 4px; font-size: 15px; color: var(--muted); font-weight: 500; }
+  .progress-card .big { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
+  .bar { height: 10px; background: var(--line); border-radius: 99px; margin: 14px 0 20px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 62%; background: var(--accent); border-radius: 99px; }
+  .day { list-style: none; margin: 0; padding: 0; }
+  .day li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .day li b { font-weight: 600; }
+  .day .done { color: var(--ok); font-weight: 600; }
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: clamp(26px, 4vw, 38px); letter-spacing: -0.02em; margin: 0 0 12px; line-height: 1.15; }
+  .sub { color: var(--muted); margin: 0 0 32px; max-width: 40em; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr); }
+  .grid .card h3 { margin: 10px 0 6px; font-size: 18px; }
+  .grid .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .time { font-size: 13px; font-weight: 600; color: var(--accent); }
+  .steps { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); counter-reset: s; }
+  .steps .card::before { counter-increment: s; content: counter(s); display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+  .steps h3 { margin: 12px 0 6px; font-size: 18px; }
+  .steps p { margin: 0; color: var(--muted); font-size: 15px; }
+  .pricing { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+  .price { display: flex; flex-direction: column; }
+  .price.featured { border: 2px solid var(--accent); }
+  .price .tag { font-size: 13px; font-weight: 600; color: var(--accent); min-height: 20px; }
+  .price h3 { margin: 6px 0 4px; font-size: 20px; }
+  .price .amt { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; }
+  .price .amt small { font-size: 16px; color: var(--muted); font-weight: 500; }
+  .price ul { padding-left: 18px; color: var(--muted); font-size: 15px; flex: 1; }
+  .price .btn { text-align: center; }
+  .faq details { border-top: 1px solid var(--line); padding: 16px 0; }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { font-weight: 600; cursor: pointer; }
+  .faq p { color: var(--muted); margin: 10px 0 0; }
+  .signup { display: grid; gap: 28px; grid-template-columns: 1fr 1fr; align-items: center; }
+  form { display: grid; gap: 12px; }
+  label { font-size: 14px; font-weight: 600; }
+  input, select {
+    width: 100%; font: inherit; padding: 12px 14px; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  }
+  .thanks { display: none; color: var(--ok); font-weight: 600; }
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+  @media (max-width: 880px) {
+    .hero, .signup { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .steps, .pricing { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .grid { grid-template-columns: 1fr; }
+    header.top .btn { padding: 10px 14px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logo">Lote<span>.</span></div>
+    <a class="btn" href="#join">Join the waitlist</a>
+  </header>
+
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Nurses · Care workers · Skilled trades · IT</span>
+      <h1>From zero German to a job in Germany.</h1>
+      <p class="lead">Live classes every day, an AI speaking partner that's always available, and exam prep for Goethe and telc B1/B2. One monthly price, one goal: getting you hired.</p>
+      <div class="cta-row">
+        <a class="btn" href="#join">Become a founding member</a>
+        <a class="btn ghost" href="#how">See how it works</a>
+      </div>
+    </div>
+    <div class="card progress-card" aria-label="Example member progress">
+      <h3>Your path to B1</h3>
+      <div class="big">62% complete</div>
+      <div class="bar"><i></i></div>
+      <ul class="day">
+        <li><b>Live class with Frau Weber</b><span class="done">Done</span></li>
+        <li><b>AI practice: shift handover</b><span class="done">Done</span></li>
+        <li><b>Vocabulary: 40 words</b><span>Next</span></li>
+        <li><b>Listening: doctor's call</b><span>Later</span></li>
+        <li><b>Streak</b><span>23 days</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <h2>Your day with Lote</h2>
+    <p class="sub">Three to four focused hours a day is how people really reach B1/B2 in months instead of years. We plan every one of those hours for you.</p>
+    <div class="grid">
+      <div class="card"><span class="time">60 min</span><h3>Live class</h3><p>A real teacher and at most 15 classmates at your level. Same group every day.</p></div>
+      <div class="card"><span class="time">45–60 min</span><h3>AI speaking partner</h3><p>Speak out loud and get corrected instantly. Practice job interviews, hospital shifts and phone calls.</p></div>
+      <div class="card"><span class="time">60–90 min</span><h3>Guided practice</h3><p>Vocabulary, listening, reading and writing, with AI marking your answers.</p></div>
+      <div class="card"><span class="time">Weekly</span><h3>Mock exam</h3><p>Full exams in the Goethe/telc format with a score, so you know exactly when you're ready.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>More than a language course</h2>
+    <p class="sub">The exam is the gate. The job is the goal.</p>
+    <div class="steps">
+      <div class="card"><h3>Learn A1 → B2</h3><p>A clear plan with a target exam date, built around your profession.</p></div>
+      <div class="card"><h3>Pass the exam</h3><p>Weekly mock exams and focused feedback until your scores are safely above the pass mark.</p></div>
+      <div class="card"><h3>Get hired</h3><p>A German CV, interview practice, a visa paperwork checklist and introductions to employers who are hiring.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <h2>Simple monthly price</h2>
+    <p class="sub">Cancel any time. Pass B1 on our plan or get extra months free.</p>
+    <div class="pricing">
+      <div class="card price featured">
+        <div class="tag">First 50 members only</div>
+        <h3>Founding member</h3>
+        <div class="amt">€99<small>/month</small></div>
+        <ul><li>Everything in Standard</li><li>Price locked for life</li><li>Help shape the program</li></ul>
+        <a class="btn" href="#join">Claim a spot</a>
+      </div>
+      <div class="card price">
+        <div class="tag"></div>
+        <h3>Standard</h3>
+        <div class="amt">€149<small>/month</small></div>
+        <ul><li>Daily live class (Mon–Fri)</li><li>Unlimited AI speaking partner</li><li>Practice plan and weekly mock exams</li><li>Career track from B1</li></ul>
+        <a class="btn ghost" href="#join">Join the waitlist</a>
+      </div>
+      <div class="card price">
+        <div class="tag">For agencies and employers</div>
+        <h3>Business</h3>
+        <div class="amt">€129<small>/seat/month</small></div>
+        <ul><li>Minimum 10 seats</li><li>Progress reports for every candidate</li><li>Classes adapted to your sector</li></ul>
+        <a class="btn ghost" href="#join">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <details><summary>I'm a complete beginner. Can I join?</summary><p>Yes. Most members start at A1. You'll be placed in a class at your level.</p></details>
+    <details><summary>How long until I reach B1?</summary><p>With 3–4 hours a day, most motivated learners can reach B1 in about 6–9 months. It depends on your starting point and how consistently you study.</p></details>
+    <details><summary>Do you guarantee a job?</summary><p>No one can honestly guarantee a job. We guarantee the training: if you follow the plan and don't pass B1, you get extra months free. From B1, we help with your CV, interviews and employer introductions.</p></details>
+    <details><summary>What do I need?</summary><p>A phone or laptop, headphones with a microphone and a stable internet connection.</p></details>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap signup">
+    <div>
+      <h2>Get a founding-member spot</h2>
+      <p class="sub">We're opening the first classes soon. Join the waitlist and we'll contact you with your start date.</p>
+    </div>
+    <div class="card">
+      <form id="waitlist">
+        <div><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
+        <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+        <div><label for="job">Your profession</label>
+          <select id="job" name="job">
+            <option>Nurse</option><option>Care worker</option><option>Skilled trade</option>
+            <option>IT</option><option>Agency / employer</option><option>Other</option>
+          </select>
+        </div>
+        <div><label for="level">Your German now</label>
+          <select id="level" name="level">
+            <option>None</option><option>A1</option><option>A2</option><option>B1</option>
+          </select>
+        </div>
+        <button class="btn" type="submit">Join the waitlist</button>
+        <p class="thanks" id="thanks">Thanks! You're on the list. We'll be in touch.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© Lote. Prototype page. Exam names belong to their respective owners.</div>
+</footer>
+
+<script>
+  // Prototype only: connect this form to a real service (e.g. Tally, Formspree, Google Forms) before going live.
+  document.getElementById('waitlist').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('thanks').style.display = 'block';
+    this.querySelector('button').disabled = true;
+  });
+</script>
+</body>
+</html>
