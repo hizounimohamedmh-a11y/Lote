@@ -1,30 +1,29 @@
-# One-click deploy on Render: https://render.com/deploy
-# Creates the Lote web service with a persistent disk for the database.
+# One-click deploy on Render (New → Blueprint). Deploys GreenLight with a disk for its database.
 services:
   - type: web
-    name: lote
+    name: greenlight
     runtime: docker
-    rootDir: app
+    rootDir: greenlight
     plan: starter
-    healthCheckPath: /api/content
+    healthCheckPath: /api/health
     disk:
-      name: lote-data
+      name: greenlight-data
       mountPath: /data
       sizeGB: 1
     envVars:
       - key: NODE_ENV
         value: production
       - key: DATABASE_PATH
-        value: /data/lote.db
+        value: /data/greenlight.db
       - key: ANTHROPIC_API_KEY
         sync: false
       - key: PUBLIC_URL
         sync: false
-      - key: LIVE_CLASS_URL
-        sync: false
       - key: STRIPE_SECRET_KEY
         sync: false
-      - key: STRIPE_PRICE_ID
+      - key: STRIPE_PRICE_PRO
+        sync: false
+      - key: STRIPE_PRICE_TEAM
         sync: false
       - key: STRIPE_WEBHOOK_SECRET
         sync: false

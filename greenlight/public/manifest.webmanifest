@@ -1,0 +1,10 @@
+{
+  "name": "GreenLight",
+  "short_name": "GreenLight",
+  "description": "Should you train today? Find out in 30 seconds.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f0d",
+  "theme_color": "#0b0f0d",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
