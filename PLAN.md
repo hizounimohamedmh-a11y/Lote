@@ -66,6 +66,8 @@ You asked for something people spend 3–4 hours a day on and pay €150–200 a
 | Other | −2 |
 | **Margin** | **≈ 94** |
 
+*AI cost check:* the €8 assumes an average learner on the cheaper AI model (`LOTE_MODEL=claude-sonnet-5-5`). A learner who does 45 minutes of AI speaking every day on the default model can cost €10–25 a month. The app has a daily AI limit per learner. Measure real costs in the first month and adjust.
+
 **Other assumptions:** €70 to acquire each paying member (ads, referral rewards, agency commissions), 10% of members leave each month (many of them because they passed), and €600/month of fixed costs (tools, website, accountant). Your own time is not paid out of this.
 
 **Three scenarios (cumulative profit, before tax)**
