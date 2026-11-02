@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, createContext, useContext } from 'react';
-import { api, useRoute, Icon, Spinner } from './lib.jsx';
+import { api, useRoute, Icon, Spinner, DEMO } from './lib.jsx';
 import Welcome from './pages/Welcome.jsx';
 import Onboarding from './pages/Onboarding.jsx';
 import Today from './pages/Today.jsx';
@@ -125,6 +125,7 @@ export default function App() {
             <div className="logo" style={{ padding: 0 }}>Lote<span>.</span></div>
             <a className="pill accent" href="#/account">{me.user.level}</a>
           </div>
+          {DEMO && <div className="alert info small" style={{ marginBottom: 16 }}>Demo version: your progress is saved for you only. Live classes and payments start at launch.</div>}
           {paywall && me.access?.billingEnabled ? <Paywall session={session} /> : page(route)}
         </main>
         <nav className="bottom-nav">

@@ -127,8 +127,9 @@ function Conversation({ scenario }) {
         <div ref={end} />
       </div>
 
+      {mic.blocked && <div className="alert info">The microphone is blocked here. Type your answer instead, or allow microphone access in your browser.</div>}
       <div className="composer">
-        <button className={`mic${mic.listening ? ' on' : ''}`} onClick={mic.listening ? mic.stop : mic.start} disabled={!canListen || busy}
+        <button className={`mic${mic.listening ? ' on' : ''}`} onClick={mic.listening ? mic.stop : mic.start} disabled={!canListen || busy || mic.blocked}
           aria-label={mic.listening ? 'Stop recording' : 'Speak'} title={canListen ? 'Hold a conversation by voice' : 'Voice input needs Chrome or Edge'}>
           <Icon name={mic.listening ? 'stop' : 'speak'} />
         </button>

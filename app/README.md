@@ -58,6 +58,18 @@ Run the tests: `npm test`
 
 ## Put it online
 
+**Easiest: Render (about $7/month incl. a disk for the database).**
+
+1. Create a free account at [render.com](https://render.com) and sign in with GitHub.
+2. Click **New → Blueprint**, pick the `lote` repository and branch. Render reads `render.yaml` from the repo.
+3. Fill in `ANTHROPIC_API_KEY` (and the Stripe keys when you're ready to charge). Leave the others empty for now.
+4. Click **Apply**. After a few minutes you get an address like `https://lote-xxxx.onrender.com`. Open it and create your account first (it becomes the admin).
+5. Put that address in `PUBLIC_URL`. Later you can connect your own domain in Render's settings.
+
+**Demo build (no server):** `npm run build:demo` writes `dist-demo/lote-demo.html`, a single file that runs the whole app in the browser with progress saved per visitor. Useful for showing people the product; the real app above is what you sell.
+
+**Other hosts:**
+
 The app is one Node server with a SQLite database file, so any host with a **persistent disk** works.
 
 **Docker (Railway, Render, Fly.io, a VPS…):**

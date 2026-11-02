@@ -7,7 +7,13 @@ export class ApiError extends Error {
   constructor(message, status) { super(message); this.status = status; }
 }
 
+export const DEMO = Boolean(import.meta.env.VITE_DEMO);
+
 export async function api(path, { method = 'GET', body } = {}) {
+  if (DEMO) {
+    const { demoApi } = await import('./demo/backend.js');
+    return demoApi(path, { method, body: body && JSON.parse(JSON.stringify(body)) });
+  }
   const res = await fetch(`/api${path}`, {
     method,
     headers: body ? { 'Content-Type': 'application/json' } : undefined,
@@ -114,6 +120,7 @@ export const canListen = Boolean(Recognition);
 export function useDictation(onFinal) {
   const [listening, setListening] = useState(false);
   const [interim, setInterim] = useState('');
+  const [blocked, setBlocked] = useState(false);
   const rec = useRef(null);
   const cb = useRef(onFinal);
   cb.current = onFinal;
@@ -133,13 +140,13 @@ export function useDictation(onFinal) {
       if (final) cb.current(final.trim());
     };
     r.onend = () => { setListening(false); setInterim(''); };
-    r.onerror = () => { setListening(false); setInterim(''); };
+    r.onerror = (e) => { setListening(false); setInterim(''); if (e.error === 'not-allowed' || e.error === 'service-not-allowed') setBlocked(true); };
     rec.current = r;
-    r.start();
+    try { r.start(); } catch { setBlocked(true); return; }
     setListening(true);
   }, []);
   useEffect(() => () => rec.current?.abort(), []);
-  return { listening, interim, start, stop };
+  return { listening, interim, start, stop, blocked };
 }
 
 // ---------------------------------------------------------------------------
