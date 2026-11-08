@@ -1,288 +1,300 @@
 <title>AFTR</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="AFTR: checked, authentic second-hand clothing, sneakers and more. Second life. First class.">
+<meta name="description" content="AFTR: checked, authentic second-hand pieces for women, men and everyone, plus home. Second life. First class.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Sora:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout: a chrome wordmark floating over deep ink; the shop is a calm grid of "scanned" pieces below it.
-   Dark-first (ink + iridescent chrome); a cool silver daylight version for light mode. */
+/* Layout: a raw editorial lookbook. Huge condensed type, film grain, and a page that changes tone
+   section by section (bone → sand → clay → olive) as you scroll. One deliberate light, warm look. */
 :root {
-  --ink: #06070b;
-  --ink-2: #0d0f16;
-  --panel: #12151e;
-  --line: #222736;
-  --text: #eef1f8;
-  --muted: #8b93a7;
-  --chrome-1: #f4f7ff;
-  --chrome-2: #9fb4d6;
-  --chrome-3: #c9b8f2;
-  --chrome-4: #8fe3ef;
-  --signal: #b8f3ff;
-  --sold: #ff6b7a;
-  --display: 'Unbounded', 'Arial Black', Impact, sans-serif;
-  --body: 'Sora', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-  --chrome: linear-gradient(100deg, var(--chrome-1) 0%, var(--chrome-2) 22%, var(--chrome-1) 38%, var(--chrome-3) 55%, var(--chrome-4) 72%, var(--chrome-1) 88%, var(--chrome-2) 100%);
-  color-scheme: dark;
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --ink: #e9ecf3; --ink-2: #f3f5fa; --panel: #ffffff; --line: #d3d8e4; --text: #0b0d14; --muted: #5a6276;
-    --chrome-1: #2b3142; --chrome-2: #6f7f9f; --chrome-3: #6c58b8; --chrome-4: #1f8fa3; --signal: #1f6f86; --sold: #d33849;
-    color-scheme: light;
-  }
-}
-:root[data-theme="light"] {
-  --ink: #e9ecf3; --ink-2: #f3f5fa; --panel: #ffffff; --line: #d3d8e4; --text: #0b0d14; --muted: #5a6276;
-  --chrome-1: #2b3142; --chrome-2: #6f7f9f; --chrome-3: #6c58b8; --chrome-4: #1f8fa3; --signal: #1f6f86; --sold: #d33849;
+  --bone: #efe8dc;
+  --sand: #e2d5c0;
+  --clay: #cdb59a;
+  --olive: #4a4a3a;
+  --espresso: #231d17;
+  --cream: #f7f2ea;
+  --muted-ink: #6d6254;
+  --bg: var(--bone);
+  --fg: var(--espresso);
+  --soft: var(--muted-ink);
+  --display: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
+  --serif: 'Instrument Serif', 'Times New Roman', serif;
+  --body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
   color-scheme: light;
 }
-
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--ink); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--ink); }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; transition: background-color .9s ease, color .9s ease; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); transition: background-color .9s ease; }
+[hidden] { display: none !important; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
-.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.mono { font-family: var(--mono); letter-spacing: 0.04em; }
-.label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-.chrome-text { background: var(--chrome); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: sheen 9s linear infinite; }
-@keyframes sheen { to { background-position: -220% 0; } }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.wrap { max-width: 1320px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mono { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.it { font-family: var(--serif); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+/* Film grain over everything */
+.grain { position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .13; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.14  0 0 0 0 0.11  0 0 0 0 0.09  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 1.2s steps(6) infinite; }
+@keyframes grain { 0%,100% { transform: translate(0,0); } 20% { transform: translate(-3%,2%); } 40% { transform: translate(2%,-3%); } 60% { transform: translate(-2%,-1%); } 80% { transform: translate(3%,3%); } }
 
 /* ---------- Intro ---------- */
-#intro { position: fixed; inset: 0; z-index: 100; background: #05060a; display: grid; place-items: center; cursor: pointer; transition: opacity .7s ease, transform .9s cubic-bezier(.7,0,.2,1); }
-#intro[hidden], [hidden] { display: none !important; }
-#intro.out { opacity: 0; transform: scale(1.18); pointer-events: none; }
-#intro canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-#intro .tag { position: absolute; left: 0; right: 0; top: calc(50% + min(15vw, 130px)); text-align: center; font-family: var(--mono); font-size: clamp(11px, 2.6vw, 14px); letter-spacing: .5em; color: #b9c6e4; text-transform: uppercase; opacity: 0; transition: opacity .5s; padding: 0 16px; }
-#intro .tag.on { opacity: 1; }
-#intro .skip { position: absolute; right: max(18px, env(safe-area-inset-right, 0px)); bottom: max(18px, env(safe-area-inset-bottom, 0px)); background: none; border: 1px solid #2a3044; color: #8b93a7; border-radius: 99px; padding: 8px 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; cursor: pointer; }
+#intro { position: fixed; inset: 0; z-index: 100; background: var(--espresso); color: var(--bone); display: grid; place-items: center; cursor: pointer; clip-path: inset(0 0 0 0); transition: clip-path 1s cubic-bezier(.77,0,.18,1); }
+#intro.lift { clip-path: inset(0 0 100% 0); }
+#intro .word { display: flex; font-family: var(--display); font-size: clamp(110px, 30vw, 380px); line-height: .9; letter-spacing: -.01em; }
+#intro .word span { display: inline-block; overflow: hidden; }
+#intro .word span i { display: inline-block; font-style: normal; transform: translateY(105%); animation: rise .9s cubic-bezier(.2,.9,.1,1) forwards; }
+#intro .word span:nth-child(2) i { animation-delay: .12s; }
+#intro .word span:nth-child(3) i { animation-delay: .24s; }
+#intro .word span:nth-child(4) i { animation-delay: .36s; }
+@keyframes rise { to { transform: translateY(0); } }
+#intro .sub { position: absolute; left: 0; right: 0; bottom: max(16%, 90px); display: flex; justify-content: center; gap: 14px; align-items: baseline; opacity: 0; animation: fade .6s ease 1s forwards; padding: 0 16px; }
+#intro .sub .it { font-size: clamp(22px, 4vw, 34px); }
+#intro .count { position: absolute; left: max(18px, env(safe-area-inset-left, 0px)); bottom: max(18px, env(safe-area-inset-bottom, 0px)); font-variant-numeric: tabular-nums; }
+#intro .skip { position: absolute; right: max(18px, env(safe-area-inset-right, 0px)); bottom: max(18px, env(safe-area-inset-bottom, 0px)); background: none; border: 0; color: var(--bone); opacity: .7; cursor: pointer; }
+#intro .line { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--clay); width: 0; animation: load 2s cubic-bezier(.6,0,.2,1) forwards; }
+@keyframes load { to { width: 100%; } }
+@keyframes fade { to { opacity: 1; } }
 
 /* ---------- Header ---------- */
-header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; backdrop-filter: blur(16px); background: color-mix(in srgb, var(--ink) 72%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent); }
-header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
-.logo { font-family: var(--display); font-weight: 900; font-size: 22px; letter-spacing: .06em; text-decoration: none; }
-nav.links { display: flex; gap: 22px; }
-nav.links a { text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-nav.links a:hover { color: var(--text); }
-@media (max-width: 560px) { nav.links a.hide-sm { display: none; } nav.links { gap: 16px; } }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(10px); transition: background-color .9s ease; }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; gap: 16px; }
+.logo { font-family: var(--display); font-size: 28px; letter-spacing: .02em; text-decoration: none; line-height: 1; }
+nav.cats { display: flex; gap: clamp(12px, 3vw, 30px); }
+nav.cats a { text-decoration: none; position: relative; }
+nav.cats a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -4px; height: 1px; background: currentColor; transition: right .35s ease; }
+nav.cats a:hover::after { right: 0; }
+@media (max-width: 560px) { header.top .wrap { height: auto; padding-block: 12px; flex-direction: column; gap: 8px; } nav.cats { gap: 16px; } }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
-.hero::before { content: ""; position: absolute; inset: -40% -10% auto; height: 120%; background: radial-gradient(ellipse at 30% 40%, color-mix(in srgb, var(--chrome-3) 26%, transparent), transparent 55%), radial-gradient(ellipse at 75% 30%, color-mix(in srgb, var(--chrome-4) 22%, transparent), transparent 55%); filter: blur(30px); animation: drift 16s ease-in-out infinite alternate; pointer-events: none; }
-.hero::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(color-mix(in srgb, var(--text) 16%, transparent) 1px, transparent 1px); background-size: 22px 22px; mask-image: linear-gradient(to bottom, black, transparent 90%); -webkit-mask-image: linear-gradient(to bottom, black, transparent 90%); pointer-events: none; opacity: .5; }
-@keyframes drift { to { transform: translate3d(4%, 6%, 0) rotate(6deg); } }
-.hero .wrap { position: relative; z-index: 1; padding-block: clamp(48px, 9vw, 110px) clamp(40px, 7vw, 80px); display: grid; gap: 26px; }
-.wordmark { font-family: var(--display); font-weight: 900; font-size: clamp(88px, 24vw, 300px); line-height: .82; letter-spacing: -.02em; margin: 0; transform-style: preserve-3d; transition: transform .2s ease-out; user-select: none; }
-.hero .row { display: flex; flex-wrap: wrap; gap: 18px 40px; align-items: end; justify-content: space-between; }
-.hero .claim { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 3.2vw, 34px); line-height: 1.1; text-transform: uppercase; margin: 0; max-width: 18ch; text-wrap: balance; }
-.hero p.sub { margin: 10px 0 0; color: var(--muted); max-width: 44ch; }
-.cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; border-radius: 999px; text-decoration: none; font-family: var(--mono); font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); background: var(--chrome); background-size: 220% 100%; animation: sheen 9s linear infinite; font-weight: 700; border: 0; cursor: pointer; }
-.cta:hover { filter: brightness(1.08); }
-.stats { display: flex; gap: 28px; flex-wrap: wrap; }
-.stats div { display: grid; gap: 2px; }
-.stats b { font-family: var(--display); font-size: 22px; font-weight: 700; }
+.hero { position: relative; padding-block: clamp(20px, 4vw, 40px) clamp(40px, 7vw, 90px); overflow: hidden; }
+.hero .bigword { font-family: var(--display); font-size: clamp(130px, 33vw, 470px); line-height: .8; letter-spacing: .02em; margin: 0; text-align: center; will-change: transform; transform-origin: 50% 0; }
+.hero .strip { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: end; margin-top: clamp(14px, 3vw, 30px); }
+.hero .strip > :last-child { text-align: right; }
+.hero .claim { font-family: var(--serif); font-style: italic; font-size: clamp(30px, 5vw, 58px); line-height: 1; text-align: center; }
+@media (max-width: 700px) { .hero .strip { grid-template-columns: 1fr; text-align: center; } .hero .strip > :last-child { text-align: center; } }
+.collage { display: grid; grid-template-columns: 1.1fr .8fr 1fr; gap: clamp(10px, 2vw, 22px); margin-top: clamp(30px, 6vw, 70px); align-items: end; }
+.collage .tile { position: relative; border-radius: 4px; overflow: hidden; text-decoration: none; display: block; max-width: 100%; }
+.collage .tile:nth-child(1) { aspect-ratio: 4 / 5; }
+.collage .tile:nth-child(2) { aspect-ratio: 3 / 4; margin-bottom: 12%; }
+.collage .tile:nth-child(3) { aspect-ratio: 4 / 5; }
+.collage .tile .lbl { position: absolute; left: 14px; bottom: 12px; right: 14px; display: flex; justify-content: space-between; align-items: baseline; color: var(--cream); }
+.collage .tile .lbl b { font-family: var(--display); font-weight: 400; font-size: clamp(26px, 4vw, 48px); line-height: 1; }
+@media (max-width: 700px) { .collage { grid-template-columns: 1fr 1fr; } .collage .tile:nth-child(3) { display: none; } }
+.photo { position: absolute; inset: 0; will-change: transform; }
 
-/* ---------- Ticker ---------- */
-.ticker { overflow: hidden; border-bottom: 1px solid var(--line); background: var(--ink-2); }
-.ticker .track { display: flex; width: max-content; animation: ticker 30s linear infinite; }
-.ticker span { font-family: var(--mono); font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); padding: 14px 22px; white-space: nowrap; }
-.ticker span i { font-style: normal; color: var(--signal); margin-right: 22px; }
-@keyframes ticker { to { transform: translateX(-50%); } }
+/* ---------- Manifesto (words darken as you scroll) ---------- */
+.manifesto { padding-block: clamp(60px, 10vw, 130px); }
+.manifesto p { font-family: var(--display); font-size: clamp(36px, 6.4vw, 92px); line-height: 1; text-transform: uppercase; margin: 0; max-width: 15ch; }
+.manifesto p .w { color: color-mix(in srgb, var(--fg) 32%, var(--bg)); transition: color .3s ease; }
+.manifesto p .w.on { color: var(--fg); }
+.manifesto p .it { text-transform: none; }
+.manifesto .side { display: flex; justify-content: space-between; gap: 20px; margin-top: 30px; flex-wrap: wrap; color: var(--soft); max-width: 900px; }
 
-/* ---------- Shop ---------- */
-section.shop { padding-block: 56px 72px; }
-.shop-head { display: flex; flex-wrap: wrap; gap: 18px; align-items: end; justify-content: space-between; margin-bottom: 26px; }
-.shop-head h2 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 48px); margin: 6px 0 0; text-transform: uppercase; line-height: 1; }
-.filters { display: flex; gap: 8px; flex-wrap: wrap; }
-.chip { border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 9px 15px; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); cursor: pointer; }
-.chip[aria-pressed="true"] { color: var(--ink); background: var(--text); border-color: var(--text); }
-.note { border: 1px dashed var(--line); border-radius: 14px; padding: 12px 16px; color: var(--muted); font-size: 14px; margin-bottom: 22px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
-@media (max-width: 560px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
-.card { position: relative; display: grid; gap: 12px; text-align: left; background: none; border: 0; padding: 0; cursor: pointer; min-width: 0; }
-.media { position: relative; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); max-width: 100%; }
-.media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
-.media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--chrome-1) 22%, transparent) 45%, color-mix(in srgb, var(--chrome-3) 18%, transparent) 52%, transparent 65%); transform: translateX(-120%); transition: transform .9s ease; pointer-events: none; }
-.card:hover .media::after, .card:focus-visible .media::after { transform: translateX(120%); }
-.card:hover .media img { transform: scale(1.04); }
-.badge { position: absolute; top: 10px; left: 10px; z-index: 2; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; padding: 5px 9px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 75%, transparent); backdrop-filter: blur(8px); color: var(--text); border: 1px solid color-mix(in srgb, var(--text) 18%, transparent); }
-.badge.sold { background: var(--sold); color: #fff; border-color: transparent; }
-.grade { position: absolute; right: 10px; top: 10px; z-index: 2; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 5px 8px; border-radius: 8px; background: var(--text); color: var(--ink); }
-.card.is-sold .media img, .card.is-sold .media svg { filter: grayscale(1) opacity(.55); }
-.meta { display: grid; gap: 2px; min-width: 0; }
-.meta .brand { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-.meta .name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.meta .line2 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
-.price { font-family: var(--display); font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums; }
-.price s { font-family: var(--mono); font-weight: 500; font-size: 12px; color: var(--muted); margin-left: 6px; }
-.size { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-.empty { padding: 40px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 18px; grid-column: 1 / -1; }
+/* ---------- Marquee ---------- */
+.marquee { overflow: hidden; border-block: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); padding-block: 14px; }
+.marquee .track { display: flex; width: max-content; gap: 40px; font-family: var(--display); font-size: clamp(28px, 4.4vw, 54px); text-transform: uppercase; will-change: transform; white-space: nowrap; }
+.marquee .track .it { font-size: .9em; }
+
+/* ---------- Collections ---------- */
+.collection { padding-block: clamp(60px, 9vw, 110px) clamp(40px, 6vw, 70px); }
+.col-head { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: end; margin-bottom: clamp(24px, 4vw, 40px); }
+.col-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(80px, 17vw, 230px); line-height: .78; margin: 0; text-transform: uppercase; letter-spacing: -.01em; }
+.col-head .no { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; align-self: start; }
+.col-head .desc { justify-self: end; text-align: right; max-width: 32ch; color: var(--soft); }
+.col-head .desc .it { display: block; font-size: 26px; color: var(--fg); line-height: 1.1; margin-bottom: 6px; }
+@media (max-width: 700px) { .col-head { grid-template-columns: 1fr; } .col-head .desc { justify-self: start; text-align: left; } }
+.products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.6vw, 20px); }
+@media (max-width: 980px) { .products { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card { display: grid; gap: 10px; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; min-width: 0; }
+.card .media { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 3px; max-width: 100%; }
+.card .media img, .card .media svg { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1s cubic-bezier(.2,.8,.2,1); }
+.card:hover .media img, .card:hover .media svg { transform: scale(1.05); }
+.card .tag { position: absolute; left: 10px; top: 10px; padding: 4px 8px; background: var(--cream); color: var(--espresso); border-radius: 2px; }
+.card .grade { position: absolute; right: 10px; top: 10px; padding: 4px 7px; background: var(--espresso); color: var(--cream); border-radius: 2px; }
+.card.sold .media::after { content: "SOLD"; position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 44px; letter-spacing: .06em; color: var(--cream); background: rgba(35, 29, 23, .45); }
+.card .info { display: grid; gap: 2px; min-width: 0; }
+.card .brand { color: var(--soft); }
+.card .name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card .row2 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-variant-numeric: tabular-nums; }
+.card .price { font-weight: 600; }
+.card .price s { color: var(--soft); font-weight: 400; margin-left: 6px; font-size: 13px; }
+.empty { grid-column: 1 / -1; border: 1px dashed color-mix(in srgb, var(--fg) 30%, transparent); padding: 40px; text-align: center; color: var(--soft); border-radius: 3px; }
+.example-note { margin: -10px 0 24px; color: var(--soft); }
 
 /* ---------- Standard ---------- */
-section.standard { border-top: 1px solid var(--line); background: var(--ink-2); padding-block: 64px; }
-section.standard h2 { font-family: var(--display); font-weight: 700; font-size: clamp(28px, 4.6vw, 44px); text-transform: uppercase; margin: 6px 0 30px; line-height: 1.05; max-width: 16ch; }
-.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
-.step { border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 8px; }
-.step .n { font-family: var(--mono); color: var(--signal); font-size: 12px; letter-spacing: .2em; }
-.step h3 { margin: 0; font-family: var(--display); font-weight: 500; font-size: 18px; text-transform: uppercase; }
-.step p { margin: 0; color: var(--muted); font-size: 15px; }
-.scale { margin-top: 44px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-@media (max-width: 700px) { .scale { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.scale div { border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: grid; gap: 4px; }
-.scale b { font-family: var(--display); font-size: 26px; }
-.scale span { color: var(--muted); font-size: 13px; }
+.standard { padding-block: clamp(60px, 9vw, 110px); }
+.standard h2 { font-family: var(--display); font-weight: 400; font-size: clamp(48px, 9vw, 120px); line-height: .85; margin: 0 0 40px; text-transform: uppercase; }
+.grades { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); }
+@media (max-width: 760px) { .grades { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.grades div { padding: 18px 16px 18px 0; display: grid; gap: 6px; border-bottom: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); }
+.grades b { font-family: var(--display); font-weight: 400; font-size: 56px; line-height: 1; }
+.grades span { color: var(--soft); font-size: 14px; }
 
-footer { border-top: 1px solid var(--line); padding-block: 40px calc(40px + env(safe-area-inset-bottom, 0px)); }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: end; }
-footer .big { font-family: var(--display); font-weight: 900; font-size: clamp(48px, 12vw, 120px); line-height: .85; }
-footer .cols { display: flex; gap: 40px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
-footer .cols div { display: grid; gap: 6px; }
-.linkbtn { background: none; border: 0; padding: 0; color: var(--muted); text-decoration: underline; cursor: pointer; font-size: 14px; text-align: left; }
+footer { padding-block: 40px calc(30px + env(safe-area-inset-bottom, 0px)); overflow: hidden; }
+footer .giant { font-family: var(--display); font-size: clamp(120px, 34vw, 500px); line-height: .78; text-align: center; letter-spacing: .02em; margin-top: 30px; }
+footer .meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.linkbtn { background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
 
-/* ---------- Product dialog ---------- */
-dialog { border: 1px solid var(--line); border-radius: 22px; padding: 0; background: var(--panel); color: var(--text); width: min(940px, calc(100% - 24px)); max-height: calc(100% - 24px); }
-dialog::backdrop { background: color-mix(in srgb, #000 65%, transparent); backdrop-filter: blur(6px); }
-.pd { display: grid; grid-template-columns: 1.1fr 1fr; }
-@media (max-width: 760px) { .pd { grid-template-columns: 1fr; } }
-.pd .gallery { position: relative; background: var(--ink-2); min-width: 0; }
-.pd .gallery .main { aspect-ratio: 4 / 5; max-width: 100%; }
-.pd .gallery .main img, .pd .gallery .main svg { width: 100%; height: 100%; object-fit: cover; display: block; }
-.thumbs { display: flex; gap: 8px; padding: 10px; overflow-x: auto; }
-.thumbs button { width: 56px; height: 70px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); padding: 0; background: none; flex: none; cursor: pointer; }
-.thumbs button[aria-current="true"] { border-color: var(--text); }
+/* ---------- Product view ---------- */
+dialog { border: 0; padding: 0; width: min(980px, calc(100% - 20px)); max-height: calc(100% - 20px); background: var(--cream); color: var(--espresso); border-radius: 4px; }
+dialog::backdrop { background: rgba(35, 29, 23, .55); }
+.pv { display: grid; grid-template-columns: 1.1fr 1fr; }
+@media (max-width: 760px) { .pv { grid-template-columns: 1fr; } }
+.pv .main { aspect-ratio: 3 / 4; position: relative; max-width: 100%; }
+.pv .main img, .pv .main svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumbs { display: flex; gap: 6px; padding: 8px; overflow-x: auto; }
+.thumbs button { width: 54px; height: 72px; padding: 0; border: 1px solid transparent; background: none; cursor: pointer; flex: none; }
+.thumbs button[aria-current="true"] { border-color: var(--espresso); }
 .thumbs img { width: 100%; height: 100%; object-fit: cover; }
-.pd .info { padding: 26px; display: grid; gap: 16px; align-content: start; min-width: 0; }
-.pd h3 { margin: 0; font-family: var(--display); font-weight: 700; font-size: 26px; line-height: 1.1; text-transform: uppercase; text-wrap: balance; }
-.specs { display: grid; grid-template-columns: auto 1fr; gap: 8px 18px; font-size: 14px; }
-.specs dt { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
-.specs dd { margin: 0; }
-.buy { display: grid; gap: 10px; }
-.buy a, .buy span { display: flex; justify-content: space-between; align-items: center; padding: 15px 18px; border-radius: 14px; text-decoration: none; font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
-.buy a.primary { background: var(--text); color: var(--ink); font-weight: 700; }
-.buy a.secondary { border: 1px solid var(--line); }
-.buy span.off { border: 1px dashed var(--line); color: var(--muted); }
-.close { position: absolute; top: 12px; right: 12px; z-index: 3; width: 40px; height: 40px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--text) 20%, transparent); background: color-mix(in srgb, var(--ink) 70%, transparent); backdrop-filter: blur(8px); cursor: pointer; font-size: 18px; line-height: 1; }
+.pv .body { padding: clamp(20px, 3vw, 34px); display: grid; gap: 18px; align-content: start; min-width: 0; }
+.pv h3 { font-family: var(--display); font-weight: 400; font-size: clamp(36px, 5vw, 54px); line-height: .9; margin: 0; text-transform: uppercase; }
+.pv .price { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.pv .price s { font-size: 15px; font-weight: 400; color: var(--muted-ink); margin-left: 8px; }
+.pv dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 18px; margin: 0; }
+.pv dt { color: var(--muted-ink); padding-top: 3px; }
+.pv dd { margin: 0; }
+.buy { display: grid; gap: 8px; }
+.buy a, .buy span { display: flex; justify-content: space-between; padding: 16px 18px; text-decoration: none; border-radius: 2px; }
+.buy a.primary { background: var(--espresso); color: var(--cream); }
+.buy a.secondary { border: 1px solid var(--espresso); }
+.buy span.off { border: 1px dashed var(--muted-ink); color: var(--muted-ink); }
+.close { position: absolute; right: 12px; top: 12px; z-index: 3; width: 42px; height: 42px; border-radius: 50%; border: 0; background: var(--cream); color: var(--espresso); cursor: pointer; font-size: 18px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .chrome-text, .cta, .ticker .track, .hero::before { animation: none; }
-  .media::after { display: none; }
+  .grain { animation: none; }
+  html { scroll-behavior: auto; }
 }
 </style>
 
+<div class="grain" aria-hidden="true"></div>
+
 <div id="intro" hidden aria-hidden="true">
-  <canvas id="introCanvas"></canvas>
-  <div class="tag" id="introTag">Second life · First class</div>
-  <button class="skip" id="skipIntro" type="button">Skip</button>
+  <div class="word"><span><i>A</i></span><span><i>F</i></span><span><i>T</i></span><span><i>R</i></span></div>
+  <div class="sub"><span class="mono">Archive Nº 01</span><span class="it">second life, first class</span></div>
+  <span class="count mono" id="introCount">000</span>
+  <button class="skip mono" id="skipIntro" type="button">Skip</button>
+  <div class="line"></div>
 </div>
 
 <header class="top">
   <div class="wrap">
-    <a class="logo chrome-text" href="#top" aria-label="AFTR home">AFTR</a>
-    <nav class="links" aria-label="Main">
-      <a href="#shop">Shop</a>
-      <a href="#standard" class="hide-sm">The standard</a>
-      <a href="#about">About</a>
+    <a class="logo" href="#top" aria-label="AFTR, back to top">AFTR</a>
+    <nav class="cats mono" aria-label="Collections">
+      <a href="#women">Women</a><a href="#men">Men</a><a href="#unisex">Unisex</a><a href="#home">Home</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
-  <section class="hero">
+  <section class="hero" data-tone="bone">
     <div class="wrap">
-      <span class="label">Drop 01 · Alicante, ES</span>
-      <h1 class="wordmark chrome-text" id="wordmark">AFTR</h1>
-      <div class="row">
-        <div>
-          <p class="claim">Second life.<br>First class.</p>
-          <p class="sub">Hand-picked clothing, sneakers and more. Every piece checked authentic, cleaned and graded before it reaches you.</p>
-        </div>
-        <div style="display:grid; gap:22px; justify-items:start">
-          <a class="cta" href="#shop">Shop the drop <span aria-hidden="true">→</span></a>
-          <div class="stats">
-            <div><b class="nums" id="statCount">0</b><span class="label">Pieces live</span></div>
-            <div><b>48h</b><span class="label">To ship</span></div>
-            <div><b>100%</b><span class="label">Authentic</span></div>
-          </div>
-        </div>
+      <h1 class="bigword" id="bigword">AFTR</h1>
+      <div class="strip">
+        <span class="mono">Archive Nº 01<br>Alicante, España</span>
+        <span class="claim">Second life, first class.</span>
+        <span class="mono">Pre-loved · Checked<br>Women · Men · Home</span>
+      </div>
+      <div class="collage">
+        <a class="tile" href="#women"><div class="photo" data-speed="0.06" style="background: radial-gradient(120% 90% at 30% 20%, #d9c3a7, #a8876a 55%, #5b4636);"></div><div class="lbl"><b>Women</b><span class="it" style="font-size:22px">her edit</span></div></a>
+        <a class="tile" href="#men"><div class="photo" data-speed="-0.04" style="background: radial-gradient(110% 90% at 70% 30%, #c9c2ad, #7d7a62 55%, #3b3a2e);"></div><div class="lbl"><b>Men</b><span class="it" style="font-size:22px">his edit</span></div></a>
+        <a class="tile" href="#home"><div class="photo" data-speed="0.08" style="background: radial-gradient(120% 100% at 50% 10%, #efe2cf, #c49f7e 50%, #6e4e3a);"></div><div class="lbl"><b>Home</b><span class="it" style="font-size:22px">for the room</span></div></a>
       </div>
     </div>
   </section>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="track">
-      <span><i>●</i>Checked authentic</span><span><i>●</i>Cleaned &amp; steamed</span><span><i>●</i>Honest grading</span><span><i>●</i>Ships from Alicante</span><span><i>●</i>New drops weekly</span><span><i>●</i>Clothing · Sneakers · More</span>
-      <span><i>●</i>Checked authentic</span><span><i>●</i>Cleaned &amp; steamed</span><span><i>●</i>Honest grading</span><span><i>●</i>Ships from Alicante</span><span><i>●</i>New drops weekly</span><span><i>●</i>Clothing · Sneakers · More</span>
+  <section class="manifesto" data-tone="sand">
+    <div class="wrap">
+      <p id="manifesto">Clothes with a past. <span class="it">Picked</span> by hand, checked, cleaned and sent back out to live again.</p>
+      <div class="side">
+        <span class="mono">Every piece authenticated</span>
+        <span class="mono">Graded out of ten</span>
+        <span class="mono">Shipped in 48h</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track" id="marquee">
+      <span>Women</span><span class="it">and</span><span>Men</span><span class="it">and</span><span>Everyone</span><span class="it">and</span><span>Home</span><span>·</span>
+      <span>Women</span><span class="it">and</span><span>Men</span><span class="it">and</span><span>Everyone</span><span class="it">and</span><span>Home</span><span>·</span>
+      <span>Women</span><span class="it">and</span><span>Men</span><span class="it">and</span><span>Everyone</span><span class="it">and</span><span>Home</span><span>·</span>
     </div>
   </div>
 
-  <section class="shop" id="shop">
+  <section class="collection" id="women" data-tone="bone">
     <div class="wrap">
-      <div class="shop-head">
-        <div>
-          <span class="label" id="dropLabel">Drop 01</span>
-          <h2>The drop</h2>
-        </div>
-        <div class="filters" role="group" aria-label="Filter by category">
-          <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
-          <button class="chip" type="button" data-f="clothing" aria-pressed="false">Clothing</button>
-          <button class="chip" type="button" data-f="shoes" aria-pressed="false">Sneakers</button>
-          <button class="chip" type="button" data-f="other" aria-pressed="false">Other</button>
-        </div>
-      </div>
-      <p class="note" id="exampleNote" hidden>Example pieces shown. The real drop goes live as soon as the first products are photographed.</p>
-      <div class="grid" id="grid"></div>
+      <div class="col-head"><span class="no">01</span><h2>Women</h2><p class="desc"><span class="it">her edit</span>Knits, denim, dresses and sneakers she’ll wear on repeat.</p></div>
+      <p class="example-note mono" data-example-note hidden>Example pieces. Real drop coming soon.</p>
+      <div class="products" data-section="women"></div>
     </div>
   </section>
 
-  <section class="standard" id="standard">
+  <section class="collection" id="men" data-tone="sand">
     <div class="wrap">
-      <span class="label">The AFTR standard</span>
-      <h2>Every piece goes through four steps.</h2>
-      <div class="steps">
-        <div class="step"><span class="n">STEP 1</span><h3>Sourced</h3><p>Picked one by one for brand, condition and style. No bulk junk.</p></div>
-        <div class="step"><span class="n">STEP 2</span><h3>Checked</h3><p>Labels, stitching and tags inspected. If it isn’t 100% authentic, it isn’t listed.</p></div>
-        <div class="step"><span class="n">STEP 3</span><h3>Cleaned &amp; graded</h3><p>Washed or steamed, measured, and every flaw photographed. No surprises.</p></div>
-        <div class="step"><span class="n">STEP 4</span><h3>Shipped</h3><p>Packed with care and sent within 48 hours from Alicante.</p></div>
-      </div>
-      <div class="scale" aria-label="AFTR condition grades">
-        <div><b class="chrome-text">10</b><strong>New with tags</strong><span>Never worn, original tags on.</span></div>
-        <div><b class="chrome-text">9</b><strong>Like new</strong><span>Worn once or twice. No visible wear.</span></div>
-        <div><b class="chrome-text">8</b><strong>Very good</strong><span>Light signs of wear, shown in photos.</span></div>
-        <div><b class="chrome-text">7</b><strong>Good</strong><span>Clear wear, still plenty of life. Priced to match.</span></div>
+      <div class="col-head"><span class="no">02</span><h2>Men</h2><p class="desc"><span class="it">his edit</span>Workwear, outerwear and the sneakers everyone asks about.</p></div>
+      <p class="example-note mono" data-example-note hidden>Example pieces. Real drop coming soon.</p>
+      <div class="products" data-section="men"></div>
+    </div>
+  </section>
+
+  <section class="collection" id="unisex" data-tone="clay">
+    <div class="wrap">
+      <div class="col-head"><span class="no">03</span><h2>Unisex</h2><p class="desc"><span class="it">for him, for her</span>Hoodies, fleeces and oversized fits that work on anyone.</p></div>
+      <p class="example-note mono" data-example-note hidden>Example pieces. Real drop coming soon.</p>
+      <div class="products" data-section="unisex"></div>
+    </div>
+  </section>
+
+  <section class="collection" id="home" data-tone="olive">
+    <div class="wrap">
+      <div class="col-head"><span class="no">04</span><h2>Home</h2><p class="desc"><span class="it">for the room</span>Lamps, ceramics, textiles and small pieces with character.</p></div>
+      <p class="example-note mono" data-example-note hidden>Example pieces. Real drop coming soon.</p>
+      <div class="products" data-section="home"></div>
+    </div>
+  </section>
+
+  <section class="standard" data-tone="sand">
+    <div class="wrap">
+      <span class="mono">The AFTR grade</span>
+      <h2>Honest about <span class="it">every</span> mark.</h2>
+      <div class="grades">
+        <div><b>10</b><strong>New with tags</strong><span>Never worn. Tags still on.</span></div>
+        <div><b>9</b><strong>Like new</strong><span>Worn once or twice. No visible wear.</span></div>
+        <div><b>8</b><strong>Very good</strong><span>Light wear, every mark photographed.</span></div>
+        <div><b>7</b><strong>Good</strong><span>Lived in, plenty of life. Priced to match.</span></div>
       </div>
     </div>
   </section>
 </main>
 
-<footer id="about">
+<footer data-tone="espresso">
   <div class="wrap">
-    <div class="big chrome-text">AFTR</div>
-    <div class="cols">
-      <div><span class="label">Follow</span><span class="mono">@aftr.store</span><span>Instagram · TikTok · Vinted</span></div>
-      <div><span class="label">Based in</span><span>Alicante, Spain</span><span>Ships across Europe</span></div>
-      <div><span class="label">Intro</span><button class="linkbtn" type="button" id="replay">Replay the intro</button></div>
+    <div class="meta mono">
+      <span>@aftr.store · Instagram · TikTok · Vinted</span>
+      <span>Alicante → Europe</span>
+      <button class="linkbtn mono" type="button" id="replay">Replay intro</button>
     </div>
+    <div class="giant" aria-hidden="true">AFTR</div>
   </div>
 </footer>
 
-<dialog id="product" aria-labelledby="pdTitle">
-  <button class="close" type="button" id="closePd" aria-label="Close">✕</button>
-  <div class="pd">
-    <div class="gallery"><div class="main" id="pdMain"></div><div class="thumbs" id="pdThumbs"></div></div>
-    <div class="info">
-      <div style="display:grid; gap:6px">
-        <span class="label" id="pdBrand"></span>
-        <h3 id="pdTitle"></h3>
-        <div class="price" id="pdPrice"></div>
-      </div>
-      <dl class="specs" id="pdSpecs"></dl>
-      <p id="pdNotes" style="margin:0; color: var(--muted); font-size: 15px"></p>
-      <div class="buy" id="pdBuy"></div>
+<dialog id="pv" aria-labelledby="pvTitle">
+  <button class="close" type="button" id="pvClose" aria-label="Close">✕</button>
+  <div class="pv">
+    <div><div class="main" id="pvMain"></div><div class="thumbs" id="pvThumbs"></div></div>
+    <div class="body">
+      <span class="mono" id="pvBrand"></span>
+      <h3 id="pvTitle"></h3>
+      <div class="price" id="pvPrice"></div>
+      <dl class="mono" id="pvSpecs"></dl>
+      <p id="pvNotes" style="margin:0"></p>
+      <div class="buy mono" id="pvBuy"></div>
     </div>
   </div>
 </dialog>
@@ -290,207 +302,182 @@ dialog::backdrop { background: color-mix(in srgb, #000 65%, transparent); backdr
 <script>
 /* =====================================================================
    PRODUCTS: edit this list to add your pieces.
-   category: "clothing" | "shoes" | "other"
+   section: "women" | "men" | "unisex" | "home"
+   kind (for the placeholder drawing): top | jacket | dress | shoe | bag | vase | lamp | chair
    grade: 10 new with tags · 9 like new · 8 very good · 7 good
-   photos: image links (from your Vinted/Wallapop listing or hosting)
-   vinted / wallapop: the link to the listing, or "" if not listed there
-   example: true marks a placeholder piece (remove these when real ones arrive)
+   photos: image links · vinted / wallapop: listing links ("" if none)
+   example: true marks a placeholder piece; delete those when real pieces arrive
    ===================================================================== */
-const DROP = 'Drop 01';
 const PRODUCTS = [
-  { id: 'ex1', example: true, brand: 'The North Face', name: 'Nuptse 700 puffer jacket', category: 'clothing', size: 'M', grade: 9, price: 145, retail: 330, color: 'Black', notes: 'Example piece. Lofty, no tears, zips work perfectly.', photos: [], vinted: '', wallapop: '', sold: false },
-  { id: 'ex2', example: true, brand: 'Nike', name: 'Air Max 90', category: 'shoes', size: 'EU 43', grade: 8, price: 75, retail: 150, color: 'White / Grey', notes: 'Example piece. Light creasing, soles clean.', photos: [], vinted: '', wallapop: '', sold: false },
-  { id: 'ex3', example: true, brand: 'Carhartt WIP', name: 'Detroit jacket', category: 'clothing', size: 'L', grade: 8, price: 95, retail: 220, color: 'Hamilton brown', notes: 'Example piece. Broken-in canvas, perfect fade.', photos: [], vinted: '', wallapop: '', sold: false },
-  { id: 'ex4', example: true, brand: 'Ralph Lauren', name: 'Cable-knit cotton jumper', category: 'clothing', size: 'M', grade: 9, price: 55, retail: 169, color: 'Navy', notes: 'Example piece. No pilling, logo intact.', photos: [], vinted: '', wallapop: '', sold: true },
-  { id: 'ex5', example: true, brand: 'Adidas', name: 'Samba OG', category: 'shoes', size: 'EU 42', grade: 10, price: 90, retail: 120, color: 'Black / White', notes: 'Example piece. New in box.', photos: [], vinted: '', wallapop: '', sold: false },
-  { id: 'ex6', example: true, brand: 'Apple', name: 'AirPods Pro (2nd gen)', category: 'other', size: 'One size', grade: 8, price: 120, retail: 279, color: 'White', notes: 'Example piece. Tested, battery healthy, case lightly marked.', photos: [], vinted: '', wallapop: '', sold: false },
-  { id: 'ex7', example: true, brand: 'Patagonia', name: 'Retro-X fleece', category: 'clothing', size: 'S', grade: 9, price: 85, retail: 200, color: 'Natural', notes: 'Example piece. Soft pile, no stains.', photos: [], vinted: '', wallapop: '', sold: false },
-  { id: 'ex8', example: true, brand: 'Stüssy', name: 'Stock logo hoodie', category: 'clothing', size: 'L', grade: 8, price: 60, retail: 140, color: 'Ash grey', notes: 'Example piece. Print sharp, light wash wear.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'w1', example: true, section: 'women', kind: 'top', brand: 'Zara', name: 'Oversized wool-blend coat', size: 'S', grade: 9, price: 48, retail: 119, color: 'Camel', notes: 'Example piece. Heavy, warm, no pilling.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'w2', example: true, section: 'women', kind: 'dress', brand: 'Mango', name: 'Linen midi dress', size: 'M', grade: 10, price: 35, retail: 69.99, color: 'Sand', notes: 'Example piece. New with tags.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'w3', example: true, section: 'women', kind: 'shoe', brand: 'Adidas', name: 'Gazelle Indoor', size: 'EU 38', grade: 8, price: 62, retail: 120, color: 'Cream / Brown', notes: 'Example piece. Light wear on the toe.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'w4', example: true, section: 'women', kind: 'bag', brand: 'COS', name: 'Leather shoulder bag', size: 'One size', grade: 9, price: 55, retail: 135, color: 'Chocolate', notes: 'Example piece. Clean inside, no scuffs.', photos: [], vinted: '', wallapop: '', sold: true },
+  { id: 'm1', example: true, section: 'men', kind: 'jacket', brand: 'Carhartt WIP', name: 'Detroit jacket', size: 'L', grade: 8, price: 95, retail: 220, color: 'Hamilton brown', notes: 'Example piece. Broken-in canvas, perfect fade.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'm2', example: true, section: 'men', kind: 'jacket', brand: 'The North Face', name: 'Nuptse 700 puffer', size: 'M', grade: 9, price: 145, retail: 330, color: 'Black', notes: 'Example piece. Lofty, zips perfect.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'm3', example: true, section: 'men', kind: 'shoe', brand: 'New Balance', name: '990v5', size: 'EU 43', grade: 8, price: 85, retail: 200, color: 'Grey', notes: 'Example piece. Soles clean, suede brushed.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'm4', example: true, section: 'men', kind: 'top', brand: 'Ralph Lauren', name: 'Cable-knit jumper', size: 'M', grade: 9, price: 55, retail: 169, color: 'Navy', notes: 'Example piece. No pilling, logo intact.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'u1', example: true, section: 'unisex', kind: 'top', brand: 'Stüssy', name: 'Stock logo hoodie', size: 'L', grade: 8, price: 60, retail: 140, color: 'Ash grey', notes: 'Example piece. Print sharp.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'u2', example: true, section: 'unisex', kind: 'jacket', brand: 'Patagonia', name: 'Retro-X fleece', size: 'M', grade: 9, price: 85, retail: 200, color: 'Natural', notes: 'Example piece. Soft pile, no stains.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'u3', example: true, section: 'unisex', kind: 'shoe', brand: 'Adidas', name: 'Samba OG', size: 'EU 41', grade: 10, price: 90, retail: 120, color: 'White / Black', notes: 'Example piece. New in box.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'u4', example: true, section: 'unisex', kind: 'top', brand: 'Levi’s', name: 'Vintage trucker jacket', size: 'M', grade: 8, price: 45, retail: 110, color: 'Mid wash', notes: 'Example piece. Natural fades.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'h1', example: true, section: 'home', kind: 'vase', brand: 'Handmade', name: 'Stoneware vase', size: '28 cm', grade: 9, price: 32, retail: null, color: 'Oat glaze', notes: 'Example piece. No chips.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'h2', example: true, section: 'home', kind: 'lamp', brand: 'IKEA', name: 'Mushroom table lamp', size: '30 cm', grade: 9, price: 25, retail: 49.99, color: 'Opal white', notes: 'Example piece. Tested, works perfectly.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'h3', example: true, section: 'home', kind: 'chair', brand: 'Vintage', name: 'Rattan side chair', size: 'H 80 cm', grade: 8, price: 70, retail: null, color: 'Natural', notes: 'Example piece. Sturdy, small marks on one leg.', photos: [], vinted: '', wallapop: '', sold: false },
+  { id: 'h4', example: true, section: 'home', kind: 'throw', brand: 'Zara Home', name: 'Wool throw blanket', size: '130 × 170', grade: 10, price: 28, retail: 59.99, color: 'Cream', notes: 'Example piece. Unused.', photos: [], vinted: '', wallapop: '', sold: false },
 ];
 
-/* ---------- Placeholder art for pieces without photos ---------- */
-const GLYPH = {
-  clothing: 'M30 22 L42 16 Q50 22 58 16 L70 22 L80 40 L70 46 L68 40 L68 84 L32 84 L32 40 L30 46 L20 40 Z',
-  shoes: 'M14 66 Q16 52 30 50 L44 48 Q50 40 58 46 L72 56 Q86 60 88 68 L88 74 L14 74 Z',
-  other: 'M30 30 L70 30 L70 70 L30 70 Z M30 30 L50 20 L90 20 L70 30 M70 70 L90 60 L90 20',
+/* ---------- Placeholder "photo" art (warm, minimal line drawings) ---------- */
+const SHAPES = {
+  top: 'M30 26 L42 20 Q50 26 58 20 L70 26 L80 44 L70 49 L68 44 L68 86 L32 86 L32 44 L30 49 L20 44 Z',
+  jacket: 'M30 24 L44 18 L50 30 L56 18 L70 24 L80 48 L71 52 L70 46 L70 88 L30 88 L30 46 L29 52 L20 48 Z M50 30 L50 88',
+  dress: 'M40 18 L60 18 L58 34 L74 88 L26 88 L42 34 Z',
+  shoe: 'M14 70 Q16 56 30 54 L44 52 Q50 44 58 50 L72 60 Q86 64 88 72 L88 78 L14 78 Z',
+  bag: 'M26 44 L74 44 L80 88 L20 88 Z M38 44 Q38 26 50 26 Q62 26 62 44',
+  vase: 'M42 20 L58 20 L56 30 Q72 44 66 70 Q62 86 50 88 Q38 86 34 70 Q28 44 44 30 Z',
+  lamp: 'M28 46 Q28 24 50 24 Q72 24 72 46 Z M48 46 L52 46 L52 82 L48 82 Z M36 82 L64 82 L64 88 L36 88 Z',
+  throw: 'M24 30 L76 30 L76 84 L24 84 Z M24 48 L76 48 M24 66 L76 66 M30 84 L30 92 M40 84 L40 92 M50 84 L50 92 M60 84 L60 92 M70 84 L70 92',
+  chair: 'M30 20 L70 20 L68 52 L32 52 Z M28 52 L72 52 L72 60 L28 60 Z M32 60 L30 90 M68 60 L70 90',
 };
-function art(p, i) {
-  const hue = [200, 255, 175, 285, 220, 190, 265, 160][i % 8];
-  return `<svg viewBox="0 0 100 125" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${p.brand} ${p.name}">
-    <defs><linearGradient id="g${p.id}" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="hsl(${hue} 40% 22%)"/><stop offset="1" stop-color="hsl(${hue + 40} 45% 10%)"/></linearGradient>
-      <linearGradient id="c${p.id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f4f7ff"/><stop offset=".5" stop-color="#9fb4d6"/><stop offset="1" stop-color="#c9b8f2"/></linearGradient></defs>
-    <rect width="100" height="125" fill="url(#g${p.id})"/>
-    <g transform="translate(0 14)" fill="none" stroke="url(#c${p.id})" stroke-width="1.4" stroke-linejoin="round"><path d="${GLYPH[p.category]}"/></g>
-    <text x="50" y="112" text-anchor="middle" fill="#dfe6f7" font-family="JetBrains Mono, monospace" font-size="5.2" letter-spacing="1.2">${p.brand.toUpperCase().slice(0, 22)}</text>
+const TONES = { women: ['#d9c3a7', '#9a7a5f'], men: ['#c9c2ad', '#6f6c56'], unisex: ['#d8bfa3', '#8c6a52'], home: ['#e8dac4', '#a88565'] };
+function art(p) {
+  const [a, b] = TONES[p.section] || TONES.unisex;
+  return `<svg viewBox="0 0 100 133" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${esc(p.brand)} ${esc(p.name)}">
+    <defs><radialGradient id="r${p.id}" cx="35%" cy="25%" r="90%"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></radialGradient></defs>
+    <rect width="100" height="133" fill="url(#r${p.id})"/>
+    <g transform="translate(0 18)" fill="none" stroke="#f7f2ea" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" opacity=".92"><path d="${SHAPES[p.kind] || SHAPES.top}"/></g>
+    <text x="50" y="124" text-anchor="middle" fill="#f7f2ea" font-family="IBM Plex Mono, monospace" font-size="4.6" letter-spacing="1.4" opacity=".9">${esc(p.brand.toUpperCase()).slice(0, 26)}</text>
   </svg>`;
 }
-const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 const GRADE = { 10: 'New with tags', 9: 'Like new', 8: 'Very good', 7: 'Good' };
+const eur = (n) => `€${Number.isInteger(n) ? n : n.toFixed(2)}`;
 
-/* ---------- Shop grid ---------- */
-const grid = document.getElementById('grid');
-let filter = 'all';
-try { filter = sessionStorage.getItem('aftr-filter') || 'all'; } catch { /* optional */ }
-function render() {
-  const list = PRODUCTS.filter((p) => filter === 'all' || p.category === filter)
-    .sort((a, b) => Number(a.sold) - Number(b.sold));
-  document.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.f === filter)));
-  document.getElementById('exampleNote').hidden = !PRODUCTS.some((p) => p.example);
-  document.getElementById('dropLabel').textContent = `${DROP} · ${PRODUCTS.filter((p) => !p.sold).length} available`;
-  document.getElementById('statCount').textContent = PRODUCTS.filter((p) => !p.sold).length;
-  if (!list.length) { grid.innerHTML = '<div class="empty">Nothing here yet. New pieces drop every week.</div>'; return; }
-  grid.innerHTML = list.map((p) => {
-    const i = PRODUCTS.indexOf(p);
-    const img = p.photos[0] ? `<img src="${esc(p.photos[0])}" alt="${esc(p.brand)} ${esc(p.name)}" loading="lazy">` : art(p, i);
-    return `<button class="card${p.sold ? ' is-sold' : ''}" type="button" data-id="${esc(p.id)}">
-      <div class="media">${img}
-        ${p.sold ? '<span class="badge sold">Sold</span>' : p.example ? '<span class="badge">Example</span>' : ''}
-        <span class="grade" title="${GRADE[p.grade] || ''}">${p.grade}/10</span>
-      </div>
-      <div class="meta">
-        <span class="brand">${esc(p.brand)}</span>
-        <span class="name">${esc(p.name)}</span>
-        <span class="line2"><span class="price">€${p.price}${p.retail ? `<s>€${p.retail}</s>` : ''}</span><span class="size">${esc(p.size)}</span></span>
-      </div>
-    </button>`;
-  }).join('');
-}
-document.querySelector('.filters').addEventListener('click', (e) => {
-  const b = e.target.closest('.chip'); if (!b) return;
-  filter = b.dataset.f;
-  try { sessionStorage.setItem('aftr-filter', filter); } catch { /* optional */ }
-  render();
+/* ---------- Render collections ---------- */
+document.querySelectorAll('.products').forEach((box) => {
+  const list = PRODUCTS.filter((p) => p.section === box.dataset.section).sort((a, b) => Number(a.sold) - Number(b.sold));
+  box.closest('.wrap').querySelector('[data-example-note]').hidden = !list.some((p) => p.example);
+  if (!list.length) { box.innerHTML = '<div class="empty">New pieces drop here soon.</div>'; return; }
+  box.innerHTML = list.map((p) => `
+    <button class="card${p.sold ? ' sold' : ''}" type="button" data-id="${esc(p.id)}">
+      <div class="media">${p.photos[0] ? `<img src="${esc(p.photos[0])}" alt="${esc(p.brand)} ${esc(p.name)}" loading="lazy">` : art(p)}
+        ${p.example ? '<span class="tag mono">Example</span>' : ''}<span class="grade mono">${p.grade}/10</span></div>
+      <div class="info"><span class="brand mono">${esc(p.brand)}</span><span class="name">${esc(p.name)}</span>
+        <span class="row2"><span class="price">${eur(p.price)}${p.retail ? `<s>${eur(p.retail)}</s>` : ''}</span><span class="mono">${esc(p.size)}</span></span></div>
+    </button>`).join('');
 });
 
-/* ---------- Product detail ---------- */
-const dlg = document.getElementById('product');
-function openProduct(id) {
-  const p = PRODUCTS.find((x) => x.id === id); if (!p) return;
-  const i = PRODUCTS.indexOf(p);
+/* ---------- Product view ---------- */
+const dlg = document.getElementById('pv');
+document.addEventListener('click', (e) => {
+  const c = e.target.closest('.card'); if (!c) return;
+  const p = PRODUCTS.find((x) => x.id === c.dataset.id); if (!p) return;
   const photos = p.photos.length ? p.photos : [null];
   const show = (k) => {
-    document.getElementById('pdMain').innerHTML = photos[k] ? `<img src="${esc(photos[k])}" alt="${esc(p.brand)} ${esc(p.name)}, photo ${k + 1}">` : art(p, i);
-    document.querySelectorAll('#pdThumbs button').forEach((t, j) => t.setAttribute('aria-current', String(j === k)));
+    document.getElementById('pvMain').innerHTML = photos[k] ? `<img src="${esc(photos[k])}" alt="${esc(p.name)}, photo ${k + 1}">` : art(p);
+    document.querySelectorAll('#pvThumbs button').forEach((t, j) => t.setAttribute('aria-current', String(j === k)));
   };
-  document.getElementById('pdThumbs').innerHTML = p.photos.length > 1 ? p.photos.map((src, k) => `<button type="button" data-k="${k}" aria-label="Photo ${k + 1}"><img src="${esc(src)}" alt=""></button>`).join('') : '';
-  document.getElementById('pdThumbs').onclick = (e) => { const t = e.target.closest('button'); if (t) show(Number(t.dataset.k)); };
+  document.getElementById('pvThumbs').innerHTML = p.photos.length > 1 ? p.photos.map((s, k) => `<button type="button" data-k="${k}" aria-label="Photo ${k + 1}"><img src="${esc(s)}" alt=""></button>`).join('') : '';
+  document.getElementById('pvThumbs').onclick = (ev) => { const t = ev.target.closest('button'); if (t) show(Number(t.dataset.k)); };
   show(0);
-  document.getElementById('pdBrand').textContent = p.brand + (p.example ? ' · example' : '');
-  document.getElementById('pdTitle').textContent = p.name;
-  document.getElementById('pdPrice').innerHTML = `€${p.price}${p.retail ? `<s>€${p.retail} new</s>` : ''}`;
-  document.getElementById('pdSpecs').innerHTML = [
-    ['Size', p.size], ['Condition', `${p.grade}/10 · ${GRADE[p.grade] || ''}`], ['Colour', p.color], ['Category', { clothing: 'Clothing', shoes: 'Sneakers', other: 'Other' }[p.category]],
-  ].filter(([, v]) => v).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
-  document.getElementById('pdNotes').textContent = p.notes || '';
+  document.getElementById('pvBrand').textContent = `${p.brand}${p.example ? ' · example' : ''}`;
+  document.getElementById('pvTitle').textContent = p.name;
+  document.getElementById('pvPrice').innerHTML = `${eur(p.price)}${p.retail ? `<s>${eur(p.retail)} new</s>` : ''}`;
+  const sec = { women: 'Women', men: 'Men', unisex: 'Unisex', home: 'Home' }[p.section];
+  document.getElementById('pvSpecs').innerHTML = [['Size', p.size], ['Grade', `${p.grade}/10 · ${GRADE[p.grade] || ''}`], ['Colour', p.color], ['Section', sec]]
+    .filter(([, v]) => v).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+  document.getElementById('pvNotes').textContent = p.notes || '';
   const buy = [];
-  if (p.sold) buy.push('<span class="off">Sold. New pieces drop weekly <span aria-hidden="true">●</span></span>');
+  if (p.sold) buy.push('<span class="off">Sold · new pieces every week</span>');
   else {
     buy.push(p.vinted ? `<a class="primary" href="${esc(p.vinted)}" target="_blank" rel="noopener">Buy on Vinted <span aria-hidden="true">↗</span></a>` : '<span class="off">Vinted link coming soon</span>');
     if (p.wallapop) buy.push(`<a class="secondary" href="${esc(p.wallapop)}" target="_blank" rel="noopener">Buy on Wallapop <span aria-hidden="true">↗</span></a>`);
   }
-  document.getElementById('pdBuy').innerHTML = buy.join('');
+  document.getElementById('pvBuy').innerHTML = buy.join('');
   dlg.showModal();
-}
-grid.addEventListener('click', (e) => { const c = e.target.closest('.card'); if (c) openProduct(c.dataset.id); });
-document.getElementById('closePd').addEventListener('click', () => dlg.close());
+});
+document.getElementById('pvClose').addEventListener('click', () => dlg.close());
 dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
 
-/* ---------- Hero tilt ---------- */
-const wm = document.getElementById('wordmark');
+/* ---------- Scroll: tone changes, hero shrink, parallax, manifesto, marquee ---------- */
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (!reduce) {
-  document.querySelector('.hero').addEventListener('pointermove', (e) => {
-    const r = wm.getBoundingClientRect();
-    const x = (e.clientX - (r.left + r.width / 2)) / r.width;
-    const y = (e.clientY - (r.top + r.height / 2)) / r.height;
-    wm.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg)`;
-  });
-  document.querySelector('.hero').addEventListener('pointerleave', () => { wm.style.transform = ''; });
+const TONE = {
+  bone: ['#efe8dc', '#231d17', '#6d6254'],
+  sand: ['#e2d5c0', '#231d17', '#6a5d4d'],
+  clay: ['#cdb59a', '#231d17', '#4f4336'],
+  olive: ['#4a4a3a', '#efe8dc', '#c9c0ad'],
+  espresso: ['#231d17', '#efe8dc', '#b8ab96'],
+};
+const toneEls = [...document.querySelectorAll('[data-tone]')];
+let currentTone = '';
+function setTone(t) {
+  if (t === currentTone) return; currentTone = t;
+  const [bg, fg, soft] = TONE[t];
+  const r = document.documentElement.style;
+  r.setProperty('--bg', bg); r.setProperty('--fg', fg); r.setProperty('--soft', soft);
 }
+const big = document.getElementById('bigword');
+const photos = [...document.querySelectorAll('.photo[data-speed]')];
+const mq = document.getElementById('marquee');
+const manifesto = document.getElementById('manifesto');
+// Split manifesto into words (keep the italic span as one unit).
+manifesto.innerHTML = [...manifesto.childNodes].map((n) => (n.nodeType === 3
+  ? n.textContent.split(/(\s+)/).map((w) => (w.trim() ? `<span class="w">${esc(w)}</span>` : w)).join('')
+  : `<span class="w">${n.outerHTML}</span>`)).join('');
+const words = [...manifesto.querySelectorAll('.w')];
+let mqX = 0; let lastY = window.scrollY;
 
-/* ---------- Intro: particles assemble the AFTR wordmark ---------- */
-const intro = document.getElementById('intro');
-const cv = document.getElementById('introCanvas');
-const ctx = cv.getContext('2d');
-let raf = 0; let ending = false;
-
-function endIntro() {
-  if (ending) return; ending = true;
-  intro.classList.add('out');
-  setTimeout(() => { cancelAnimationFrame(raf); intro.hidden = true; intro.classList.remove('out'); ending = false; }, 900);
+function onScroll() {
+  const y = window.scrollY; const vh = window.innerHeight;
+  // Section tone: the section crossing the middle of the screen wins.
+  for (const el of toneEls) { const r = el.getBoundingClientRect(); if (r.top <= vh * 0.5 && r.bottom > vh * 0.5) { setTone(el.dataset.tone); break; } }
+  if (reduce) { words.forEach((w) => w.classList.add('on')); return; }
+  // Hero word shrinks and lifts as you scroll away.
+  const k = Math.min(1, y / (vh * 0.9));
+  big.style.transform = `translateY(${k * -6}vh) scale(${1 - k * 0.12})`;
+  big.style.letterSpacing = `${0.02 + k * 0.05}em`;
+  for (const p of photos) p.style.transform = `translateY(${y * Number(p.dataset.speed)}px) scale(1.12)`;
+  // Manifesto: words darken as they pass the lower part of the screen.
+  const mr = manifesto.getBoundingClientRect();
+  const prog = Math.min(1, Math.max(0, (vh * 0.85 - mr.top) / (mr.height + vh * 0.35)));
+  const lit = Math.round(prog * words.length);
+  words.forEach((w, i) => w.classList.toggle('on', i < lit));
+  // Marquee drifts with scroll direction and speed.
+  mqX -= (y - lastY) * 0.6 + 0.4; lastY = y;
+  const half = mq.scrollWidth / 3; if (-mqX > half) mqX += half; if (mqX > 0) mqX -= half;
+  mq.style.transform = `translateX(${mqX}px)`;
 }
-async function playIntro() {
+let ticking = false;
+window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { onScroll(); ticking = false; }); } }, { passive: true });
+if (!reduce) { (function drift() { mqX -= 0.35; const half = mq.scrollWidth / 3; if (-mqX > half) mqX += half; mq.style.transform = `translateX(${mqX}px)`; requestAnimationFrame(drift); })(); }
+onScroll();
+
+/* ---------- Intro ---------- */
+let introTimer = 0; let countTimer = 0;
+function playIntro() {
   if (reduce) return;
-  intro.hidden = false;
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-  const W = intro.clientWidth; const H = intro.clientHeight;
-  cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  try { await Promise.race([document.fonts.load('900 200px Unbounded'), new Promise((r) => setTimeout(r, 900))]); } catch { /* fallback font */ }
-
-  // Sample the wordmark's pixels to get target points.
-  const size = Math.min(W * 0.26, 260);
-  const off = document.createElement('canvas'); off.width = W; off.height = H;
-  const o = off.getContext('2d');
-  o.fillStyle = '#fff'; o.textAlign = 'center'; o.textBaseline = 'middle';
-  o.font = `900 ${size}px Unbounded, "Arial Black", sans-serif`;
-  o.fillText('AFTR', W / 2, H / 2);
-  const data = o.getImageData(0, 0, W, H).data;
-  const step = Math.max(3, Math.round(size / 52));
-  const targets = [];
-  for (let y = 0; y < H; y += step) for (let x = 0; x < W; x += step) if (data[(y * W + x) * 4 + 3] > 128) targets.push([x, y]);
-  const pal = ['#f4f7ff', '#9fb4d6', '#c9b8f2', '#8fe3ef'];
-  const parts = targets.map(([tx, ty]) => {
-    const a = Math.random() * Math.PI * 2; const d = Math.max(W, H) * (0.6 + Math.random() * 0.6);
-    return { x: W / 2 + Math.cos(a) * d, y: H / 2 + Math.sin(a) * d, tx, ty, c: pal[Math.floor(Math.random() * pal.length)], delay: Math.random() * 0.35 };
-  });
-
-  const t0 = performance.now();
-  const tag = document.getElementById('introTag'); tag.classList.remove('on');
-  const ease = (t) => 1 - Math.pow(1 - t, 4);
-  const frame = (now) => {
-    const t = (now - t0) / 1000;
-    ctx.fillStyle = 'rgba(5,6,10,0.32)'; ctx.fillRect(0, 0, W, H);
-    // Gather (0 to 1.5 s)
-    for (const p of parts) {
-      const k = ease(Math.min(1, Math.max(0, (t - p.delay) / 1.15)));
-      const x = p.x + (p.tx - p.x) * k; const y = p.y + (p.ty - p.y) * k;
-      ctx.fillStyle = p.c;
-      ctx.fillRect(x, y, step * 0.62, step * 0.62);
-    }
-    // Scan beam reveals the solid chrome wordmark (1.5 to 2.2 s)
-    if (t > 1.5) {
-      const k = Math.min(1, (t - 1.5) / 0.7);
-      const bx = W * 0.08 + (W * 0.84) * k;
-      ctx.save();
-      ctx.beginPath(); ctx.rect(0, 0, bx, H); ctx.clip();
-      const g = ctx.createLinearGradient(W * 0.2, 0, W * 0.8, 0);
-      g.addColorStop(0, '#f4f7ff'); g.addColorStop(0.3, '#9fb4d6'); g.addColorStop(0.55, '#c9b8f2'); g.addColorStop(0.8, '#8fe3ef'); g.addColorStop(1, '#f4f7ff');
-      ctx.fillStyle = g; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.font = `900 ${size}px Unbounded, "Arial Black", sans-serif`;
-      ctx.shadowColor = 'rgba(184,243,255,0.55)'; ctx.shadowBlur = 30;
-      ctx.fillText('AFTR', W / 2, H / 2);
-      ctx.restore();
-      if (k < 1) {
-        const lg = ctx.createLinearGradient(bx - 40, 0, bx + 4, 0);
-        lg.addColorStop(0, 'rgba(184,243,255,0)'); lg.addColorStop(1, 'rgba(184,243,255,0.9)');
-        ctx.fillStyle = lg; ctx.fillRect(bx - 40, H / 2 - size * 0.7, 44, size * 1.4);
-      }
-    }
-    if (t > 2.15) tag.classList.add('on');
-    if (t > 3.3) { endIntro(); return; }
-    raf = requestAnimationFrame(frame);
-  };
-  ctx.fillStyle = '#05060a'; ctx.fillRect(0, 0, W, H);
-  raf = requestAnimationFrame(frame);
+  // Replace the node to restart its CSS animations.
+  const old = document.getElementById('intro');
+  const clone = old.cloneNode(true); old.replaceWith(clone);
+  bindIntro(clone);
+  clone.hidden = false;
+  const counter = clone.querySelector('#introCount'); let n = 0;
+  countTimer = setInterval(() => { n = Math.min(100, n + 4); counter.textContent = String(n).padStart(3, '0'); }, 70);
+  introTimer = setTimeout(() => endIntroOn(clone), 2500);
 }
-intro.addEventListener('click', endIntro);
-document.getElementById('skipIntro').addEventListener('click', (e) => { e.stopPropagation(); endIntro(); });
-window.addEventListener('keydown', (e) => { if (!intro.hidden && (e.key === 'Escape' || e.key === ' ')) endIntro(); });
-document.getElementById('replay').addEventListener('click', () => { cancelAnimationFrame(raf); playIntro(); });
+function endIntroOn(el) {
+  clearTimeout(introTimer); clearInterval(countTimer);
+  el.classList.add('lift');
+  setTimeout(() => { el.hidden = true; el.classList.remove('lift'); }, 1000);
+}
+function bindIntro(el) {
+  el.addEventListener('click', () => endIntroOn(el));
+  el.querySelector('.skip').addEventListener('click', (e) => { e.stopPropagation(); endIntroOn(el); });
+}
+window.addEventListener('keydown', (e) => { const el = document.getElementById('intro'); if (el && !el.hidden && (e.key === 'Escape' || e.key === ' ')) { e.preventDefault(); endIntroOn(el); } });
+document.getElementById('replay').addEventListener('click', () => { window.scrollTo({ top: 0 }); playIntro(); });
 
-render();
 let seen = false;
-try { seen = sessionStorage.getItem('aftr-intro') === '1'; sessionStorage.setItem('aftr-intro', '1'); } catch { /* optional */ }
+try { seen = sessionStorage.getItem('aftr-intro2') === '1'; sessionStorage.setItem('aftr-intro2', '1'); } catch { /* optional */ }
 if (!seen) playIntro();
 </script>
