@@ -220,6 +220,66 @@ dialog#qv::backdrop { background: rgba(17,17,16,.35); backdrop-filter: blur(2px)
 .logo:hover { letter-spacing: .5em; padding-left: .5em; }
 @media (hover: none), (prefers-reduced-motion: reduce) { .tilt { transform: none !important; } .tilt::before { display: none; } .logo:hover { letter-spacing: .3em; padding-left: .3em; } }
 
+/* ---------- Sell page: "Give it an AFTR" ---------- */
+#sell { position: fixed; inset: 0; z-index: 80; background: var(--paper); overflow-y: auto; overscroll-behavior: contain; transform: translateY(100%); transition: transform .9s var(--ease); }
+#sell.open { transform: none; }
+#sell .bar { position: sticky; top: 0; z-index: 3; display: flex; justify-content: space-between; align-items: center; padding: calc(16px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) 16px max(20px, env(safe-area-inset-left, 0px)); background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); font-size: 13px; }
+#sell .bar .logo { font-size: 18px; }
+#sell .open-statement { padding-block: clamp(50px, 9vw, 120px) clamp(40px, 6vw, 80px); }
+#sell h2.big { margin: 0; font-weight: 300; font-size: clamp(44px, 8.2vw, 128px); line-height: .95; letter-spacing: -.045em; max-width: 13ch; }
+#sell h2.big b { font-weight: 600; }
+#sell .lead { margin: 26px 0 0; max-width: 46ch; color: var(--grey); font-size: 17px; }
+#sell .steps3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 46px; }
+#sell .steps3 div { border-top: 1px solid var(--ink); padding-top: 14px; display: grid; gap: 4px; }
+#sell .steps3 b { font-weight: 500; }
+#sell .steps3 span { color: var(--grey); font-size: 14px; }
+@media (max-width: 700px) { #sell .steps3 { grid-template-columns: 1fr; } }
+.calc { background: var(--ink); color: var(--paper); }
+.calc .wrap { padding-block: clamp(56px, 8vw, 100px); display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(30px, 5vw, 80px); align-items: start; }
+@media (max-width: 860px) { .calc .wrap { grid-template-columns: 1fr; } }
+.calc h3 { margin: 0 0 6px; font-weight: 300; font-size: clamp(30px, 3.6vw, 48px); letter-spacing: -.03em; line-height: 1; }
+.calc .sub { color: #a39b90; margin: 0 0 26px; }
+.rows { display: grid; }
+.rowq { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding-block: 12px; border-top: 1px solid #2a2622; }
+.rowq:last-child { border-bottom: 1px solid #2a2622; }
+.rowq .nm { font-size: 16px; }
+.rowq .nm span { display: block; color: #8f877c; font-size: 12px; font-family: var(--mono); letter-spacing: .04em; }
+.stepper { display: inline-flex; align-items: center; gap: 2px; border: 1px solid #3a352f; border-radius: 999px; padding: 3px; }
+.stepper button { width: 34px; height: 34px; border-radius: 50%; font-size: 18px; color: var(--paper); }
+.stepper button:hover { background: #26221e; }
+.stepper output { min-width: 26px; text-align: center; font-variant-numeric: tabular-nums; }
+.total { position: sticky; top: 90px; display: grid; gap: 14px; }
+.total .eyebrow { color: #8f877c; }
+.total .amount { font-weight: 300; font-size: clamp(64px, 9vw, 132px); line-height: .9; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+.total .amount.silk-text { font-weight: 600; filter: brightness(1.7); }
+.total p { color: #a39b90; margin: 0; max-width: 34ch; font-size: 14px; }
+.total .btn.light { justify-self: start; }
+.formwrap { padding-block: clamp(60px, 9vw, 110px); display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(30px, 5vw, 80px); }
+@media (max-width: 860px) { .formwrap { grid-template-columns: 1fr; } }
+.formwrap h3 { margin: 0; font-weight: 300; font-size: clamp(30px, 3.6vw, 48px); letter-spacing: -.03em; line-height: 1; }
+.formwrap .rules { margin-top: 22px; display: grid; gap: 10px; color: var(--grey); font-size: 14px; }
+.formwrap .rules b { color: var(--ink); font-weight: 500; }
+form.sellf { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+form.sellf .full { grid-column: 1 / -1; }
+@media (max-width: 560px) { form.sellf { grid-template-columns: 1fr; } }
+form.sellf label { display: grid; gap: 6px; font-size: 13px; color: var(--grey); }
+form.sellf input, form.sellf select, form.sellf textarea { font: inherit; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid #cfc6b8; padding: 10px 0; border-radius: 0; width: 100%; }
+form.sellf textarea { min-height: 80px; resize: vertical; }
+form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { outline: none; border-bottom-color: var(--ink); }
+.choice2 { display: flex; flex-wrap: wrap; gap: 8px; }
+.choice2 button { border: 1px solid var(--line); border-radius: 999px; padding: 9px 15px; font-size: 13px; }
+.choice2 button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.check { display: flex !important; grid-template-columns: none; align-items: flex-start; gap: 10px !important; color: var(--ink) !important; font-size: 14px !important; }
+.check input { width: auto !important; margin-top: 3px; }
+.formmsg { font-size: 14px; padding: 12px 14px; border-radius: 4px; }
+.formmsg.ok { background: #e6efe7; color: #23482c; }
+.formmsg.err { background: #f6e3df; color: #7a2a1d; }
+.copybox { white-space: pre-wrap; font-family: var(--mono); font-size: 12px; background: var(--stone); padding: 14px; border-radius: 4px; user-select: all; }
+.inbox { border-top: 1px solid var(--ink); padding-block: 50px 80px; }
+.inbox .item { display: grid; grid-template-columns: 1fr auto; gap: 6px 20px; padding-block: 14px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.inbox .item .who { font-weight: 500; }
+.inbox .item .meta2 { color: var(--grey); font-family: var(--mono); font-size: 11px; }
+
 /* ---------- Cursor ---------- */
 .cursor { position: fixed; left: 0; top: 0; z-index: 300; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--ink); pointer-events: none; display: grid; place-items: center; transition: width .45s var(--ease), height .45s var(--ease), margin .45s var(--ease), background .3s; mix-blend-mode: normal; }
 .cursor span { font-size: 12px; font-weight: 500; color: var(--paper); opacity: 0; transition: opacity .3s; }
@@ -256,7 +316,7 @@ dialog#qv::backdrop { background: rgba(17,17,16,.35); backdrop-filter: blur(2px)
     </nav>
     <button class="menu-btn" type="button" id="openMenu" aria-label="Open menu">Menu</button>
     <a class="logo silk-text" href="#top" aria-label="AFTR home">AFTR</a>
-    <div class="right"><a class="u-link hide-sm" href="#grades">Grading</a><a class="u-link" href="#shop" data-go="all">Shop all</a></div>
+    <div class="right"><a class="u-link" href="#sell" data-sell>Sell to us</a><a class="u-link hide-sm" href="#grades">Grading</a><a class="u-link" href="#shop" data-go="all">Shop all</a></div>
   </div>
 </header>
 
@@ -266,6 +326,7 @@ dialog#qv::backdrop { background: rgba(17,17,16,.35); backdrop-filter: blur(2px)
   <a href="#shop" data-go="men">Men</a>
   <a href="#shop" data-go="unisex">Unisex</a>
   <a href="#shop" data-go="home">Home</a>
+  <a href="#sell" data-sell>Sell to us</a>
   <a href="#grades" style="font-size:20px; margin-top:24px">Grading</a>
 </div>
 
@@ -351,13 +412,82 @@ dialog#qv::backdrop { background: rgba(17,17,16,.35); backdrop-filter: blur(2px)
       <div><span class="eyebrow">AFTR</span><span style="max-width:32ch; color:#cfc7bb">Authenticated pre-owned clothing, sneakers and home pieces, from Alicante to Europe.</span></div>
       <div><span class="eyebrow">Shop</span><a href="#shop" data-go="women">Women</a><a href="#shop" data-go="men">Men</a><a href="#shop" data-go="unisex">Unisex</a><a href="#shop" data-go="home">Home</a></div>
       <div><span class="eyebrow">Follow</span><span>Instagram</span><span>TikTok</span><span>Vinted</span></div>
-      <div><span class="eyebrow">Info</span><a href="#grades">Grading</a><button type="button" id="replay" style="text-align:left">Replay intro</button></div>
+      <div><span class="eyebrow">Info</span><a href="#sell" data-sell>Sell to us</a><a href="#grades">Grading</a><button type="button" id="replay" style="text-align:left">Replay intro</button></div>
     </div>
     <div class="big silk-text" aria-hidden="true">AFTR</div>
     <div class="co">ARCHIVE CO. · EST. 2026</div>
     <div class="legal"><span>© 2026 AFTR Archive Co.</span><span>@aftr.store</span></div>
   </div>
 </footer>
+
+<div id="sell" hidden role="dialog" aria-modal="true" aria-label="Sell to AFTR">
+  <div class="bar"><span class="logo silk-text">AFTR</span><button type="button" class="u-link" id="closeSell">Back to the archive</button></div>
+
+  <section class="open-statement">
+    <div class="wrap">
+      <span class="eyebrow">Sell to AFTR</span>
+      <h2 class="big" style="margin-top:18px">Your closet is full of <b class="silk-text">second lives.</b></h2>
+      <p class="lead">The jacket you haven’t worn since last winter. The sneakers that were never quite your size. Send them to us and we give them an after.</p>
+      <div class="steps3">
+        <div><b>Tell us what you have</b><span>Brand, size, condition and a few photos. Two minutes.</span></div>
+        <div><b>Get an offer</b><span>We check it’s authentic and send you a price within 48 hours.</span></div>
+        <div><b>Get paid</b><span>Drop it off in Alicante or we arrange pickup. Paid on hand-over.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="calc" data-dark>
+    <div class="wrap">
+      <div>
+        <h3>What’s your closet worth?</h3>
+        <p class="sub">Count what you don’t wear any more.</p>
+        <div class="rows" id="calcRows"></div>
+      </div>
+      <div class="total" aria-live="polite">
+        <span class="eyebrow">Your closet could be worth around</span>
+        <div class="amount silk-text" id="calcTotal">€0</div>
+        <p id="calcNote">A rough guide for branded pieces in good condition. Your real offer comes after we see them.</p>
+        <a class="btn light" href="#sellForm" id="toForm">Get my real offer <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap formwrap" id="sellForm">
+    <div>
+      <span class="eyebrow">Submit a piece</span>
+      <h3 style="margin-top:14px">Tell us about it.</h3>
+      <div class="rules">
+        <span><b>Authentic only.</b> We check every piece. Replicas are refused.</span>
+        <span><b>Clean and complete.</b> Washed, no big damage, with the box or tags if you have them.</span>
+        <span><b>Brands we love:</b> Nike, Adidas, New Balance, Carhartt, Stüssy, Ralph Lauren, The North Face, Patagonia, Arc’teryx, COS, plus good homeware.</span>
+      </div>
+    </div>
+    <div style="display:grid; gap:18px; min-width:0">
+      <form class="sellf" id="sellf" novalidate>
+        <label>Your name<input id="sf-name" name="name" autocomplete="name" required></label>
+        <label>Instagram or phone<input id="sf-contact" name="contact" placeholder="@you or +34…" required></label>
+        <div class="full" style="display:grid; gap:8px"><span style="font-size:13px; color:var(--grey)">What is it?</span>
+          <div class="choice2" id="sf-cat" role="group" aria-label="Category">
+            <button type="button" data-v="Clothing" aria-pressed="true">Clothing</button><button type="button" data-v="Sneakers" aria-pressed="false">Sneakers</button><button type="button" data-v="Bag / accessory" aria-pressed="false">Bag / accessory</button><button type="button" data-v="Home" aria-pressed="false">Home</button>
+          </div></div>
+        <label>Brand<input id="sf-brand" name="brand" required></label>
+        <label>Item<input id="sf-item" name="item" placeholder="e.g. Nuptse jacket" required></label>
+        <label>Size<input id="sf-size" name="size"></label>
+        <label>Condition<select id="sf-cond" name="condition"><option>New with tags</option><option selected>Like new</option><option>Very good</option><option>Good, some wear</option></select></label>
+        <label class="full">Anything else? (where you bought it, flaws, price you hope for)<textarea id="sf-notes" name="notes"></textarea></label>
+        <label class="check full"><input type="checkbox" id="sf-auth" required> I confirm this piece is authentic and mine to sell.</label>
+        <div class="full"><button class="btn dark" type="submit">Send for an offer <span class="arr" aria-hidden="true">→</span></button></div>
+      </form>
+      <div id="sellMsg" hidden></div>
+    </div>
+  </section>
+
+  <section class="wrap inbox" id="inbox" hidden>
+    <span class="eyebrow">Only you see this</span>
+    <h3 style="margin:10px 0 20px; font-weight:300; font-size:36px; letter-spacing:-.03em">Submissions</h3>
+    <div id="inboxList"><p style="color:var(--grey)">No submissions yet.</p></div>
+  </section>
+</div>
 
 <dialog id="qv" aria-labelledby="qvTitle">
   <div class="qv">
@@ -655,6 +785,134 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     requestAnimationFrame(draw);
   };
   requestAnimationFrame(draw);
+})();
+
+/* ---------- Sell page ---------- */
+(function sellPage() {
+  // Rough guide per piece (euros). Change these to your real buying prices.
+  const GUIDE = [
+    ['Jackets & coats', 'puffers, fleeces, workwear', 35],
+    ['Hoodies & knits', 'sweatshirts, jumpers, cardigans', 15],
+    ['Sneakers', 'in good condition', 30],
+    ['Jeans & trousers', 'denim, cargos, joggers', 12],
+    ['T-shirts & tops', 'graphic tees, shirts', 6],
+    ['Bags & accessories', 'bags, caps, belts', 15],
+    ['Home pieces', 'lamps, ceramics, textiles', 10],
+  ];
+  const q = GUIDE.map(() => 0);
+  const rows = document.getElementById('calcRows');
+  const totalEl = document.getElementById('calcTotal');
+  rows.innerHTML = GUIDE.map(([n, d], i) => `
+    <div class="rowq"><div class="nm">${n}<span>${d}</span></div>
+      <div class="stepper"><button type="button" data-i="${i}" data-d="-1" aria-label="Fewer ${n}">−</button><output id="q${i}">0</output><button type="button" data-i="${i}" data-d="1" aria-label="More ${n}">+</button></div></div>`).join('');
+  let shown = 0; let anim = 0;
+  const animateTo = (target) => {
+    cancelAnimationFrame(anim);
+    const from = shown; const t0 = performance.now();
+    const step = (t) => { const k = Math.min(1, (t - t0) / 500); shown = Math.round(from + (target - from) * (1 - Math.pow(1 - k, 3))); totalEl.textContent = `€${shown.toLocaleString()}`; if (k < 1) anim = requestAnimationFrame(step); };
+    anim = requestAnimationFrame(step);
+  };
+  rows.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-i]'); if (!b) return;
+    const i = Number(b.dataset.i); q[i] = Math.max(0, Math.min(50, q[i] + Number(b.dataset.d)));
+    document.getElementById(`q${i}`).textContent = q[i];
+    const total = q.reduce((sum, n, j) => sum + n * GUIDE[j][2], 0);
+    const count = q.reduce((a, b2) => a + b2, 0);
+    if (reduce) { shown = total; totalEl.textContent = `€${total.toLocaleString()}`; } else animateTo(total);
+    document.getElementById('calcNote').textContent = count
+      ? `${count} piece${count === 1 ? '' : 's'}. A rough guide for authentic branded pieces in good condition. Your real offer comes after we see them.`
+      : 'A rough guide for branded pieces in good condition. Your real offer comes after we see them.';
+  });
+
+  // Category choice
+  let cat = 'Clothing';
+  document.getElementById('sf-cat').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-v]'); if (!b) return; cat = b.dataset.v;
+    document.querySelectorAll('#sf-cat button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  });
+
+  // Storage: claude.ai shared db when available; otherwise show a message to copy.
+  let db = null; let me = null; let isOwner = false;
+  const ready = (async () => {
+    try {
+      if (!window.claude?.use) return;
+      [db, me] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+      isOwner = me ? await me.isOwner() : false;
+    } catch { db = null; }
+  })();
+
+  const form = document.getElementById('sellf'); const msg = document.getElementById('sellMsg');
+  const show = (cls, html) => { msg.hidden = false; msg.className = `formmsg ${cls}`; msg.innerHTML = html; };
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const v = (id) => document.getElementById(id).value.trim();
+    const entry = { name: v('sf-name'), contact: v('sf-contact'), category: cat, brand: v('sf-brand'), item: v('sf-item'), size: v('sf-size'), condition: v('sf-cond'), notes: v('sf-notes'), at: new Date().toISOString() };
+    if (!entry.name || !entry.contact || !entry.brand || !entry.item) { show('err', 'Please fill in your name, contact, brand and item.'); return; }
+    if (!document.getElementById('sf-auth').checked) { show('err', 'Please confirm the piece is authentic and yours to sell.'); return; }
+    const btn = form.querySelector('button[type=submit]'); btn.disabled = true;
+    await ready;
+    let saved = false;
+    try {
+      const uid = db && me ? await me.id() : null;
+      if (uid) {
+        const ref = db.doc(`submissions/${uid}`);
+        const snap = await ref.get();
+        const items = (snap.exists && Array.isArray(snap.data().items)) ? snap.data().items : [];
+        await ref.set({ items: [...items, entry].slice(-30), updatedAt: entry.at });
+        saved = true;
+      }
+    } catch { saved = false; }
+    btn.disabled = false;
+    if (saved) {
+      form.reset(); form.hidden = true;
+      show('ok', `<b>Sent.</b> Thanks ${esc(entry.name.split(' ')[0])}, we’ll reply to ${esc(entry.contact)} with an offer within 48 hours. <button type="button" class="u-link" id="another" style="margin-left:8px">Send another piece</button>`);
+      document.getElementById('another').onclick = () => { form.hidden = false; msg.hidden = true; };
+      loadInbox();
+    } else {
+      const text = `Hi AFTR! I'd like an offer:\n${entry.category}: ${entry.brand} ${entry.item}\nSize: ${entry.size || '-'} · Condition: ${entry.condition}\n${entry.notes ? `Notes: ${entry.notes}\n` : ''}Name: ${entry.name} · Contact: ${entry.contact}`;
+      show('err', `We couldn’t send it from here. Copy this and DM it to <b>@aftr.store</b> on Instagram, with photos:<div class="copybox" style="margin-top:10px">${esc(text)}</div>`);
+    }
+  });
+
+  // Owner inbox
+  async function loadInbox() {
+    await ready;
+    if (!db || !isOwner) return;
+    document.getElementById('inbox').hidden = false;
+    try {
+      const snap = await db.collection('submissions').get();
+      const all = snap.docs.flatMap((d) => (d.data()?.items || [])).sort((a, b) => String(b.at).localeCompare(String(a.at)));
+      document.getElementById('inboxList').innerHTML = all.length ? all.map((x) => `
+        <div class="item"><div><span class="who">${esc(x.brand)} ${esc(x.item)}</span> · ${esc(x.category)} · ${esc(x.size || '-')} · ${esc(x.condition)}
+          ${x.notes ? `<div style="color:var(--grey); margin-top:4px">${esc(x.notes)}</div>` : ''}</div>
+          <div style="text-align:right">${esc(x.name)}<div class="meta2">${esc(x.contact)} · ${esc(String(x.at).slice(0, 10))}</div></div></div>`).join('')
+        : '<p style="color:var(--grey)">No submissions yet.</p>';
+    } catch { document.getElementById('inboxList').innerHTML = '<p style="color:var(--grey)">Couldn’t load submissions.</p>'; }
+  }
+
+  // Open / close
+  const page = document.getElementById('sell');
+  const open = () => {
+    page.hidden = false; page.scrollTop = 0;
+    requestAnimationFrame(() => requestAnimationFrame(() => page.classList.add('open')));
+    lenis?.stop(); document.documentElement.style.overflow = 'hidden';
+    if (location.hash !== '#sell') history.replaceState(null, '', '#sell');
+    loadInbox();
+  };
+  const close = () => {
+    page.classList.remove('open');
+    setTimeout(() => { page.hidden = true; }, reduce ? 0 : 900);
+    lenis?.start(); document.documentElement.style.overflow = '';
+    if (location.hash === '#sell') history.replaceState(null, '', location.pathname + location.search);
+  };
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('[data-sell]')) return;
+    e.preventDefault(); e.stopImmediatePropagation(); closeMenu(); open();
+  }, true);
+  document.getElementById('toForm').addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); document.getElementById('sellForm').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); });
+  document.getElementById('closeSell').addEventListener('click', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !page.hidden) close(); });
+  if (location.hash === '#sell') setTimeout(open, 50);
 })();
 
 /* ---------- Touches ---------- */
