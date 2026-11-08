@@ -56,7 +56,11 @@ header.top.scrolled { border-bottom-color: var(--line); }
 header.top .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 64px; }
 .logo { font-weight: 600; font-size: 20px; letter-spacing: .3em; padding-left: .3em; }
 nav.main { display: flex; gap: 28px; font-size: 13px; }
-.right { display: flex; justify-content: flex-end; gap: 24px; font-size: 13px; }
+.right { display: flex; justify-content: flex-end; align-items: center; gap: 24px; font-size: 13px; }
+.lang { display: inline-flex; gap: 2px; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; }
+.lang button { padding: 4px 6px; color: var(--grey); border-radius: 4px; }
+.lang button[aria-pressed="true"] { color: var(--ink); background: var(--stone); }
+@media (max-width: 820px) { .right { gap: 14px; } }
 .menu-btn { display: none; font-size: 13px; }
 @media (max-width: 820px) {
   nav.main, .right .hide-sm { display: none; }
@@ -357,7 +361,7 @@ a[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
     </nav>
     <button class="menu-btn" type="button" id="openMenu" aria-label="Open menu">Menu</button>
     <a class="logo silk-text" href="#top" aria-label="AFTR home">AFTR</a>
-    <div class="right"><a class="u-link hide-sm" href="#sell" data-sell>Sell to us</a><a class="u-link hide-sm" href="#grades">Grading</a><a class="u-link" href="#shop" data-go="all">Shop all</a></div>
+    <div class="right"><a class="u-link hide-sm" href="#sell" data-sell>Sell to us</a><a class="u-link hide-sm" href="#grades">Grading</a><a class="u-link" href="#shop" data-go="all">Shop all</a><div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div></div>
   </div>
 </header>
 
@@ -526,6 +530,7 @@ a[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
 /* =====================================================================
    PRODUCTS: edit this list to add your pieces.
    Give `cost: 30` (what you paid) and leave out `price`: the price is set by the pricing rule above.
+   Optional Spanish text: `name_es` and `notes_es`.
    section: "women" | "men" | "unisex" | "home"
    grade: 10 new with tags · 9 like new · 8 very good · 7 good
    photos: image links (first two are used on the card: main + hover)
@@ -537,6 +542,7 @@ a[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
    WHATSAPP: your number with country code, digits only (e.g. '34612345678').
    FIT_PRICE / BAG_EXTRA: Blind Fit price and the extra for a bag.
    ===================================================================== */
+let LANG = 'en'; // set by the language switch
 const WHATSAPP = '';
 const FIT_TIERS = { standard: { name: 'Blind Fit', price: 149 }, plus: { name: 'Blind Fit Plus', price: 239 } };
 const BAG_EXTRA = 39;
@@ -556,7 +562,7 @@ function setWhatsApp(a, text) {
 document.addEventListener('click', (e) => { const a = e.target.closest('a[aria-disabled="true"]'); if (a) { e.preventDefault(); e.stopImmediatePropagation(); } }, true);
 
 const PRODUCTS = [
-  { id: 'k1', example: true, section: 'unisex', brand: 'AFTR Selection', name: 'Brushed knit sweater', size: 'M', grade: 9, price: 49, retail: null, color: 'Black / Off-white', notes: 'Test piece. Fluffy brushed knit with an abstract black and off-white pattern, crew neck, ribbed cuffs and hem. Relaxed, slightly cropped fit. Soft and warm.', photos: ['img/knit-black-white.jpg'], vinted: '', wallapop: '', sold: false },
+  { id: 'k1', example: true, section: 'unisex', brand: 'AFTR Selection', name: 'Brushed knit sweater', name_es: 'Jersey de punto cepillado', notes_es: 'Pieza de prueba. Punto suave y esponjoso con estampado abstracto negro y blanco roto, cuello redondo, puños y bajo de canalé. Corte relajado, un poco corto. Suave y calentito.', size: 'M', grade: 9, price: 49, retail: null, color: 'Black / Off-white', notes: 'Test piece. Fluffy brushed knit with an abstract black and off-white pattern, crew neck, ribbed cuffs and hem. Relaxed, slightly cropped fit. Soft and warm.', photos: ['img/knit-black-white.jpg'], vinted: '', wallapop: '', sold: false },
   { id: 'w1', example: true, section: 'women', brand: 'Max Mara', name: 'Wool wrap coat', size: 'S', grade: 9, price: 210, retail: 690, color: 'Camel', notes: 'Example piece. Heavy wool, clean lining, belt included.', photos: [], vinted: '', wallapop: '', sold: false },
   { id: 'w2', example: true, section: 'women', brand: 'COS', name: 'Linen midi dress', size: 'M', grade: 10, price: 45, retail: 99, color: 'Sand', notes: 'Example piece. New with tags.', photos: [], vinted: '', wallapop: '', sold: false },
   { id: 'w3', example: true, section: 'women', brand: 'Adidas', name: 'Gazelle Indoor', size: 'EU 38', grade: 8, price: 62, retail: 120, color: 'Cream / Brown', notes: 'Example piece. Light wear on the toe.', photos: [], vinted: '', wallapop: '', sold: false },
@@ -639,7 +645,9 @@ grid.addEventListener('click', (e) => {
   const acts = [];
   if (p.sold) acts.push('<span>Sold</span>');
   else {
-    const url = waLink(`Hi AFTR! I want ${archNo(p)}: ${p.brand} ${p.name} (size ${p.size}, ${eur(p.price)}). Is it still available? I'm in Alicante.`);
+    const url = waLink(LANG === 'es'
+      ? `¡Hola AFTR! Quiero ${archNo(p)}: ${p.brand} ${p.name_es || p.name} (talla ${p.size}, ${eur(p.price)}). ¿Sigue disponible? Estoy en Alicante.`
+      : `Hi AFTR! I want ${archNo(p)}: ${p.brand} ${p.name} (size ${p.size}, ${eur(p.price)}). Is it still available? I'm in Alicante.`);
     acts.push(url ? `<a class="primary" href="${esc(url)}" target="_blank" rel="noopener">Order on WhatsApp <span aria-hidden="true">↗</span></a>` : '<span>Order on WhatsApp · number coming soon</span>');
     acts.push('<span class="note-alc">Alicante only · pickup or local delivery</span>');
   }
@@ -880,7 +888,10 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     const total = FIT_TIERS[tier].price + (who === 'her' && bag.checked ? BAG_EXTRA : 0);
     document.getElementById('fitPrice').textContent = eur(total);
     const v = (id) => document.getElementById(id).value;
-    const msg = `Hi AFTR! I want a ${FIT_TIERS[tier].name} (${who === 'him' ? 'for him' : 'for her'}).\nTop: ${v('fitTop')} · Pants: ${v('fitPants')} · Shoes: ${v('fitShoe')}\nVibe: ${v('fitVibe')}${who === 'her' && bag.checked ? '\nPlus a bag (+' + eur(BAG_EXTRA) + ')' : ''}\nTotal: ${eur(total)} · Alicante`;
+    const bagOn = who === 'her' && bag.checked;
+    const msg = LANG === 'es'
+      ? `¡Hola AFTR! Quiero un ${FIT_TIERS[tier].name} (${who === 'him' ? 'para él' : 'para ella'}).\nParte de arriba: ${v('fitTop')} · Pantalón: ${v('fitPants')} · Zapatillas: ${v('fitShoe')}\nEstilo: ${tr(v('fitVibe'))}${bagOn ? '\nCon bolso (+' + eur(BAG_EXTRA) + ')' : ''}\nTotal: ${eur(total)} · Alicante`
+      : `Hi AFTR! I want a ${FIT_TIERS[tier].name} (${who === 'him' ? 'for him' : 'for her'}).\nTop: ${v('fitTop')} · Pants: ${v('fitPants')} · Shoes: ${v('fitShoe')}\nVibe: ${v('fitVibe')}${bagOn ? '\nPlus a bag (+' + eur(BAG_EXTRA) + ')' : ''}\nTotal: ${eur(total)} · Alicante`;
     setWhatsApp(document.getElementById('fitOrder'), msg);
   };
   document.querySelector('.fit-tabs').addEventListener('click', (e) => {
@@ -892,6 +903,7 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   });
   ['fitTop', 'fitPants', 'fitShoe', 'fitVibe', 'fitBag'].forEach((id) => document.getElementById(id).addEventListener('change', render));
   fillShoes(); render();
+  window.__fitRender = render;
 })();
 
 /* ---------- Touches ---------- */
@@ -927,6 +939,114 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     on = near;
   }, { passive: true });
 })();
+
+/* ---------- Language: English / Spanish ---------- */
+const ES = {
+  'Archive Co. · Est. 2026': 'Archive Co. · Desde 2026',
+  'View': 'Ver',
+  'Alicante only · Order on WhatsApp': 'Solo Alicante · Pide por WhatsApp',
+  '· New batch every month': '· Nueva tanda cada mes',
+  'Women': 'Mujer', 'Men': 'Hombre', 'Unisex': 'Unisex', 'Home': 'Hogar',
+  'Menu': 'Menú', 'Sell to us': 'Véndenos', 'Grading': 'Estado', 'Shop all': 'Ver todo', 'Close': 'Cerrar',
+  'Batch 01': 'Tanda 01', 'Hand-picked · One of each': 'Elegido a mano · Pieza única', 'Alicante, ES': 'Alicante, ES',
+  'Here this month.': 'Aquí este mes.', 'Gone the next.': 'El que viene, ya no.',
+  'Shop the batch': 'Ver la tanda', 'Est. 2026': 'Desde 2026', 'Scroll': 'Baja',
+  'Shop by edit': 'Compra por sección', 'Four edits · New pieces weekly': 'Cuatro secciones · Piezas nuevas cada mes',
+  'How AFTR works': 'Cómo funciona AFTR',
+  'A new batch every month. One of each piece.': 'Una tanda nueva cada mes. Una sola unidad de cada pieza.',
+  'When it’s gone, it’s gone.': 'Cuando se acaba, se acabó.',
+  'Hand-picked': 'Elegido a mano',
+  'Every piece chosen one by one. No restocks, no repeats.': 'Cada pieza elegida una a una. Sin reposiciones, sin repetir.',
+  'Order on WhatsApp': 'Pide por WhatsApp',
+  'Message us the piece you want. We confirm and sort it out with you.': 'Escríbenos con la pieza que quieres. Te confirmamos y lo cerramos contigo.',
+  'Alicante only, for now': 'Solo en Alicante, de momento',
+  'Pick it up or we bring it to you in Alicante.': 'Recógelo o te lo llevamos en Alicante.',
+  'The surprise box': 'La caja sorpresa',
+  'Give us your sizes. We pick the whole outfit, head to toe. You open the box.': 'Dinos tus tallas. Elegimos el outfit completo, de la cabeza a los pies. Tú abres la caja.',
+  'For him': 'Para él', 'For her': 'Para ella', 'Better pieces': 'Mejores piezas',
+  'Top size': 'Talla de arriba', 'Pants size': 'Talla de pantalón', 'Shoe size': 'Talla de calzado', 'Vibe': 'Estilo',
+  'Surprise me': 'Sorpréndeme', 'Clean': 'Clean', 'Street': 'Street', 'Sporty': 'Deportivo',
+  'Add a bag, our pick': 'Añade un bolso, elegido por nosotros',
+  'Total': 'Total',
+  'Alicante only. We message you to confirm before we put it together.': 'Solo Alicante. Te escribimos para confirmar antes de prepararla.',
+  'Hat': 'Gorra', 'Pants': 'Pantalón', 'Shirt, sweatshirt or hoodie': 'Camiseta, sudadera o hoodie', 'Shoes': 'Zapatillas', 'Glasses': 'Gafas', 'Bag': 'Bolso',
+  'The archive': 'El archivo', 'All': 'Todo',
+  'Showing example pieces. The first real drop replaces them.': 'Piezas de ejemplo. La primera tanda real las sustituye.',
+  'Example': 'Ejemplo', 'Quick view': 'Vista rápida', 'Sold': 'Vendido', 'One size': 'Talla única',
+  'Condition': 'Estado', 'Every piece is graded out of 10': 'Cada pieza tiene una nota sobre 10',
+  'New with tags': 'Nuevo con etiqueta', 'Never worn. Original tags attached.': 'Sin estrenar. Con sus etiquetas originales.',
+  'Like new': 'Como nuevo', 'Worn once or twice. No visible wear.': 'Usado una o dos veces. Sin desgaste visible.',
+  'Very good': 'Muy bueno', 'Light signs of wear, all photographed.': 'Ligeros signos de uso, todos fotografiados.',
+  'Good': 'Bueno', 'Visible wear, plenty of life. Priced to match.': 'Uso visible, pero con mucha vida. Precio acorde.',
+  'Hand-picked clothing and full fits. A new batch every month. Alicante only, for now.': 'Ropa elegida a mano y outfits completos. Una tanda nueva cada mes. Solo en Alicante, de momento.',
+  'Shop': 'Tienda', 'Follow': 'Síguenos', 'Info': 'Info', 'Replay intro': 'Ver intro otra vez',
+  'ARCHIVE CO. · EST. 2026': 'ARCHIVE CO. · DESDE 2026',
+  'Back to the shop': 'Volver a la tienda', 'Sell to AFTR': 'Vende a AFTR', 'Coming': 'Muy', 'soon.': 'pronto.',
+  'Soon you’ll be able to bring us your pieces and get paid for them. Follow @aftr.store to hear first.': 'Pronto podrás traernos tus piezas y cobrar por ellas. Síguenos en @aftr.store para enterarte antes que nadie.',
+  'Size': 'Talla', 'Colour': 'Color', 'Edit': 'Sección',
+  'Order on WhatsApp · number coming soon': 'Pide por WhatsApp · número muy pronto',
+  'Alicante only · pickup or local delivery': 'Solo Alicante · recogida o entrega en mano',
+  // attributes
+  'Collections': 'Secciones', 'Open menu': 'Abrir menú', 'AFTR home': 'Inicio AFTR', 'Who is it for': 'Para quién es',
+  'Box': 'Caja', 'WhatsApp number not added yet': 'Número de WhatsApp aún no añadido', 'What’s in the box': 'Qué hay en la caja',
+  'Filter': 'Filtrar', 'Language': 'Idioma',
+};
+const tr = (en) => (LANG === 'es' ? ES[en] ?? trPattern(en) ?? en : en);
+function trPattern(t) {
+  let m;
+  if ((m = t.match(/^(.+) · Example$/))) return `${tr(m[1])} · Ejemplo`;
+  if ((m = t.match(/^(.+) · Preview$/))) return `${tr(m[1])} · Vista previa`;
+  if ((m = t.match(/^(\d+)\/10 · (.+)$/))) return `${m[1]}/10 · ${tr(m[2])}`;
+  if ((m = t.match(/^One size · (\d+\/10)$/))) return `Talla única · ${m[1]}`;
+  if ((m = t.match(/^(.+), photo coming$/))) return `${m[1]}, foto próximamente`;
+  return null;
+}
+// Products' own Spanish text
+const productES = () => { const map = {}; PRODUCTS.forEach((p) => { if (p.name_es) map[p.name] = p.name_es; if (p.notes_es && p.notes) map[p.notes] = p.notes_es; }); return map; };
+const ORIG = new WeakMap(); const ORIG_ATTR = new WeakMap();
+function translateNode(root) {
+  const extra = productES();
+  const look = (en) => (LANG === 'es' ? (extra[en] ?? tr(en)) : en);
+  const walk = (node) => {
+    if (node.nodeType === 3) {
+      const raw = ORIG.has(node) ? ORIG.get(node) : node.nodeValue;
+      const key = raw.replace(/\s+/g, ' ').trim(); if (!key) return;
+      if (!ORIG.has(node)) ORIG.set(node, raw);
+      const out = look(key);
+      const next = out === key ? raw : raw.replace(key, out);
+      if (node.nodeValue !== next) node.nodeValue = next;
+      return;
+    }
+    if (node.nodeType !== 1 || node.matches('script, style, svg, canvas')) return;
+    for (const a of ['aria-label', 'placeholder', 'title']) {
+      if (!node.hasAttribute(a)) continue;
+      const store = ORIG_ATTR.get(node) || {}; if (!(a in store)) store[a] = node.getAttribute(a); ORIG_ATTR.set(node, store);
+      const val = look(store[a]); if (node.getAttribute(a) !== val) node.setAttribute(a, val);
+    }
+    node.childNodes.forEach(walk);
+  };
+  walk(root);
+}
+let applying = false;
+new MutationObserver((list) => {
+  if (applying) return;
+  applying = true;
+  for (const m of list) m.addedNodes.forEach((n) => translateNode(n));
+  applying = false;
+}).observe(document.body, { childList: true, subtree: true });
+function setLang(l) {
+  LANG = l === 'es' ? 'es' : 'en';
+  document.documentElement.lang = LANG;
+  document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
+  try { localStorage.setItem('aftr-lang', LANG); } catch { /* optional */ }
+  applying = true; translateNode(document.body); applying = false;
+  window.__fitRender?.();
+}
+document.addEventListener('click', (e) => { const b = e.target.closest('[data-lang]'); if (b) setLang(b.dataset.lang); });
+{
+  let saved = null; try { saved = localStorage.getItem('aftr-lang'); } catch { /* optional */ }
+  setLang(saved || ((navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en'));
+}
 
 /* ---------- Intro ---------- */
 function playIntro() {
