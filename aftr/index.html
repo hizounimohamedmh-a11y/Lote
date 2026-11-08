@@ -210,29 +210,6 @@ dialog#qv::backdrop { background: rgba(17,17,16,.35); backdrop-filter: blur(2px)
 .qv .actions a.secondary { border: 1px solid var(--ink); }
 .qv .actions span { border: 1px solid var(--line); color: var(--grey); font-weight: 400; }
 
-/* ---------- AFTRLIFE page: a hang tag on a string ---------- */
-#aftrlife { position: fixed; inset: 0; z-index: 80; background: #0d0c0b; color: #efe8dc; overflow-y: auto; overscroll-behavior: contain; clip-path: circle(0px at var(--ox, 50%) var(--oy, 50%)); transition: clip-path 1s cubic-bezier(.76,0,.24,1); }
-#aftrlife.open { clip-path: circle(150% at var(--ox, 50%) var(--oy, 50%)); }
-#aftrlife .bar { position: sticky; top: 0; z-index: 3; display: flex; justify-content: space-between; align-items: center; padding: calc(18px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) 18px max(20px, env(safe-area-inset-left, 0px)); font-size: 13px; background: linear-gradient(#0d0c0b 60%, transparent); }
-#aftrlife .bar .eyebrow { color: #8f877c; }
-#aftrlife .title { text-align: center; padding-inline: 16px; margin-top: clamp(10px, 3vw, 30px); }
-#aftrlife .title h2 { margin: 0; font-weight: 600; font-size: clamp(56px, 14vw, 220px); line-height: .82; letter-spacing: -.035em; filter: brightness(1.75) contrast(1.05); }
-#aftrlife .title p { margin: 22px auto 0; max-width: 44ch; text-wrap: balance; color: #a39b90; font-size: 16px; }
-#tagStage { display: block; width: 100%; height: min(78vh, 760px); touch-action: none; cursor: grab; }
-#tagStage.grabbing { cursor: grabbing; }
-#aftrlife .hint2 { text-align: center; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #6f685f; margin-top: -20px; }
-#aftrlife .lives { max-width: 1100px; margin: clamp(80px, 12vw, 160px) auto 0; padding-inline: max(20px, env(safe-area-inset-left, 0px)); display: grid; gap: clamp(40px, 7vw, 90px); }
-#aftrlife .life { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: baseline; border-top: 1px solid #2a2622; padding-top: 22px; }
-#aftrlife .life .n { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: #8f877c; }
-#aftrlife .life b { display: block; font-weight: 300; font-size: clamp(34px, 6vw, 84px); letter-spacing: -.035em; line-height: 1; }
-#aftrlife .life b.silk-text { font-weight: 600; filter: brightness(1.75); }
-#aftrlife .life span { display: block; margin-top: 12px; color: #a39b90; max-width: 46ch; }
-#aftrlife .end { text-align: center; padding: clamp(90px, 12vw, 160px) 16px calc(70px + env(safe-area-inset-bottom, 0px)); display: grid; justify-items: center; gap: 24px; }
-#aftrlife .end .count { font-weight: 300; font-size: clamp(64px, 12vw, 160px); letter-spacing: -.04em; line-height: .9; font-variant-numeric: tabular-nums; }
-#aftrlife .btn.light { background: #efe8dc; color: #0d0c0b; }
-@media (max-width: 640px) { #aftrlife .life { grid-template-columns: 1fr; gap: 8px; } }
-@media (prefers-reduced-motion: reduce) { #aftrlife { transition: none; } }
-
 /* ---------- Cursor ---------- */
 .cursor { position: fixed; left: 0; top: 0; z-index: 300; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--ink); pointer-events: none; display: grid; place-items: center; transition: width .45s var(--ease), height .45s var(--ease), margin .45s var(--ease), background .3s; mix-blend-mode: normal; }
 .cursor span { font-size: 12px; font-weight: 500; color: var(--paper); opacity: 0; transition: opacity .3s; }
@@ -269,7 +246,7 @@ dialog#qv::backdrop { background: rgba(17,17,16,.35); backdrop-filter: blur(2px)
     </nav>
     <button class="menu-btn" type="button" id="openMenu" aria-label="Open menu">Menu</button>
     <a class="logo silk-text" href="#top" aria-label="AFTR home">AFTR</a>
-    <div class="right"><a class="u-link" href="#aftrlife" data-aftrlife>Aftrlife</a><a class="u-link hide-sm" href="#grades">Grading</a><a class="u-link" href="#shop" data-go="all">Shop all</a></div>
+    <div class="right"><a class="u-link hide-sm" href="#grades">Grading</a><a class="u-link" href="#shop" data-go="all">Shop all</a></div>
   </div>
 </header>
 
@@ -279,7 +256,6 @@ dialog#qv::backdrop { background: rgba(17,17,16,.35); backdrop-filter: blur(2px)
   <a href="#shop" data-go="men">Men</a>
   <a href="#shop" data-go="unisex">Unisex</a>
   <a href="#shop" data-go="home">Home</a>
-  <a href="#aftrlife" data-aftrlife>Aftrlife</a>
   <a href="#grades" style="font-size:20px; margin-top:24px">Grading</a>
 </div>
 
@@ -365,33 +341,13 @@ dialog#qv::backdrop { background: rgba(17,17,16,.35); backdrop-filter: blur(2px)
       <div><span class="eyebrow">AFTR</span><span style="max-width:32ch; color:#cfc7bb">Authenticated pre-owned clothing, sneakers and home pieces, from Alicante to Europe.</span></div>
       <div><span class="eyebrow">Shop</span><a href="#shop" data-go="women">Women</a><a href="#shop" data-go="men">Men</a><a href="#shop" data-go="unisex">Unisex</a><a href="#shop" data-go="home">Home</a></div>
       <div><span class="eyebrow">Follow</span><span>Instagram</span><span>TikTok</span><span>Vinted</span></div>
-      <div><span class="eyebrow">Info</span><a href="#aftrlife" data-aftrlife>Aftrlife</a><a href="#grades">Grading</a><button type="button" id="replay" style="text-align:left">Replay intro</button></div>
+      <div><span class="eyebrow">Info</span><a href="#grades">Grading</a><button type="button" id="replay" style="text-align:left">Replay intro</button></div>
     </div>
     <div class="big silk-text" aria-hidden="true">AFTR</div>
     <div class="co">ARCHIVE CO. · EST. 2026</div>
     <div class="legal"><span>© 2026 AFTR Archive Co.</span><span>@aftr.store</span></div>
   </div>
 </footer>
-
-<div id="aftrlife" hidden role="dialog" aria-modal="true" aria-label="Aftrlife" data-dark>
-  <div class="bar"><span class="eyebrow">AFTR · Archive Co.</span><button type="button" class="u-link" id="closeLife">Back to the archive</button></div>
-  <div class="title">
-    <h2 class="silk-text">AFTRLIFE</h2>
-    <p>Every piece has a past. This is where it gets an after.</p>
-  </div>
-  <canvas id="tagStage" aria-label="A swinging AFTR hang tag. Drag it to move it."></canvas>
-  <p class="hint2">Grab the tag</p>
-  <div class="lives">
-    <div class="life"><span class="n">I · BEFORE</span><div><b>First life.</b><span>Someone bought it, wore it, loved it. Then life moved on.</span></div></div>
-    <div class="life"><span class="n">II · BETWEEN</span><div><b>The closet.</b><span>Most good pieces stop here. Folded away, forgotten, waiting.</span></div></div>
-    <div class="life"><span class="n">III · AFTER</span><div><b class="silk-text">AFTR.</b><span>We find it, check it, clean it, grade it and give it a number. Then it goes back out into the world, to you.</span></div></div>
-  </div>
-  <div class="end">
-    <span class="eyebrow" style="color:#8f877c">Pieces in the archive</span>
-    <div class="count" id="lifeCount">000</div>
-    <button type="button" class="btn light" id="closeLife2">Back to the archive <span class="arr" aria-hidden="true">→</span></button>
-  </div>
-</div>
 
 <dialog id="qv" aria-labelledby="qvTitle">
   <div class="qv">
@@ -689,146 +645,6 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     requestAnimationFrame(draw);
   };
   requestAnimationFrame(draw);
-})();
-
-/* ---------- AFTRLIFE: open/close and the hang tag ---------- */
-(function aftrlife() {
-  const page = document.getElementById('aftrlife');
-  const cv = document.getElementById('tagStage');
-  const ctx = cv.getContext('2d');
-  document.getElementById('lifeCount').textContent = String(PRODUCTS.length).padStart(3, '0');
-  let running = false; let raf = 0;
-
-  // Rope: verlet points from a pin to the tag.
-  const N = 18; let pts = []; let seg = 14; let pin = { x: 0, y: 0 }; let W = 0; let H = 0; let S = 1;
-  let grab = null; const ptr = { x: 0, y: 0 };
-  const TAG = { w: 170, h: 250 };
-  const setup = () => {
-    const d = Math.min(2, window.devicePixelRatio || 1);
-    W = cv.clientWidth; H = cv.clientHeight;
-    cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0);
-    S = Math.min(1, W / 520);
-    seg = (H * .42) / N;
-    pin = { x: W / 2, y: 0 };
-    if (!pts.length) pts = Array.from({ length: N + 1 }, (_, i) => ({ x: pin.x, y: pin.y + i * seg, px: pin.x, py: pin.y + i * seg }));
-  };
-  const step = (t) => {
-    const g = .55; const wind = reduce ? 0 : Math.sin(t / 1300) * .05 + Math.sin(t / 470) * .02;
-    for (let i = 1; i < pts.length; i++) {
-      const p = pts[i];
-      const vx = (p.x - p.px) * .985; const vy = (p.y - p.py) * .985;
-      p.px = p.x; p.py = p.y;
-      p.x += vx + wind * (i / N); p.y += vy + g;
-    }
-    if (grab !== null) { pts[grab].x = ptr.x; pts[grab].y = ptr.y; }
-    for (let k = 0; k < 14; k++) {
-      pts[0].x = pin.x; pts[0].y = pin.y;
-      for (let i = 0; i < pts.length - 1; i++) {
-        const a = pts[i]; const b = pts[i + 1];
-        const dx = b.x - a.x; const dy = b.y - a.y; const dist = Math.hypot(dx, dy) || 1;
-        const diff = (dist - seg) / dist;
-        const wa = i === 0 ? 0 : .5; const wb = i === 0 ? 1 : .5;
-        a.x += dx * diff * wa; a.y += dy * diff * wa;
-        b.x -= dx * diff * wb; b.y -= dy * diff * wb;
-      }
-      if (grab !== null) { pts[grab].x = ptr.x; pts[grab].y = ptr.y; }
-      const mX = TAG.w * S * .55;
-      for (const p of pts) {
-        if (p.x < mX) { p.x = mX; p.px = p.x; }
-        if (p.x > W - mX) { p.x = W - mX; p.px = p.x; }
-        if (p.y < 4) { p.y = 4; p.py = p.y; }
-        if (p.y > H - TAG.h * S - 10) { p.y = H - TAG.h * S - 10; p.py = p.y; }
-      }
-    }
-  };
-  const roundRect = (x, y, w, h, r) => { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); };
-  const draw = () => {
-    ctx.clearRect(0, 0, W, H);
-    // pin
-    ctx.fillStyle = '#5a534b'; ctx.beginPath(); ctx.arc(pin.x, pin.y + 2, 3, 0, Math.PI * 2); ctx.fill();
-    // string
-    ctx.strokeStyle = '#d9cfbf'; ctx.lineWidth = 1.4; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
-    for (let i = 1; i < pts.length - 1; i++) { const mx = (pts[i].x + pts[i + 1].x) / 2; const my = (pts[i].y + pts[i + 1].y) / 2; ctx.quadraticCurveTo(pts[i].x, pts[i].y, mx, my); }
-    const end = pts[pts.length - 1]; const prev = pts[pts.length - 2];
-    ctx.lineTo(end.x, end.y); ctx.stroke();
-    // tag hangs from the last point, turned along the string
-    const ang = Math.atan2(end.y - prev.y, end.x - prev.x) - Math.PI / 2;
-    const w = TAG.w * S; const h = TAG.h * S;
-    ctx.save(); ctx.translate(end.x, end.y); ctx.rotate(ang);
-    ctx.shadowColor = 'rgba(0,0,0,.5)'; ctx.shadowBlur = 30 * S; ctx.shadowOffsetY = 14 * S;
-    // card with clipped top corners
-    ctx.beginPath();
-    const c = 22 * S;
-    ctx.moveTo(-w / 2 + c, -6 * S); ctx.lineTo(w / 2 - c, -6 * S); ctx.lineTo(w / 2, c - 6 * S); ctx.lineTo(w / 2, h); ctx.lineTo(-w / 2, h); ctx.lineTo(-w / 2, c - 6 * S); ctx.closePath();
-    ctx.fillStyle = '#efe8dc'; ctx.fill();
-    ctx.shadowColor = 'transparent';
-    // eyelet
-    ctx.fillStyle = '#0d0c0b'; ctx.beginPath(); ctx.arc(0, 10 * S, 6 * S, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = '#b9ad9b'; ctx.lineWidth = 2 * S; ctx.beginPath(); ctx.arc(0, 10 * S, 9 * S, 0, Math.PI * 2); ctx.stroke();
-    // print
-    ctx.fillStyle = '#111110'; ctx.textAlign = 'center';
-    ctx.font = `600 ${44 * S}px Geist, Arial, sans-serif`; ctx.fillText('AFTR', 0, 78 * S);
-    ctx.font = `500 ${8.5 * S}px "Geist Mono", monospace`; ctx.fillStyle = '#77716a';
-    ctx.fillText('A R C H I V E   C O .', 0, 96 * S);
-    ctx.fillStyle = '#d0c6b6'; ctx.fillRect(-w / 2 + 18 * S, 112 * S, w - 36 * S, 1);
-    const rows = [['Nº', String(PRODUCTS.length).padStart(3, '0')], ['LIVES', '1 → 2'], ['GRADE', '9/10'], ['NEXT', 'YOURS']];
-    ctx.font = `500 ${9 * S}px "Geist Mono", monospace`;
-    rows.forEach(([k2, v2], i) => {
-      const y = (134 + i * 22) * S;
-      ctx.textAlign = 'left'; ctx.fillStyle = '#77716a'; ctx.fillText(k2, -w / 2 + 18 * S, y);
-      ctx.textAlign = 'right'; ctx.fillStyle = '#111110'; ctx.fillText(v2, w / 2 - 18 * S, y);
-    });
-    ctx.restore();
-  };
-  const loop = (t) => {
-    // (Re)measure once the page is laid out, then drop the tag in with a small swing.
-    if (cv.clientWidth && cv.clientHeight && (cv.clientWidth !== W || cv.clientHeight !== H)) {
-      const first = !pts.length; pts = []; setup();
-      if (first) pts.forEach((p, i) => { p.px = p.x - (i / N) * 7; });
-    }
-    if (pts.length) { step(t); draw(); }
-    if (running) raf = requestAnimationFrame(loop);
-  };
-  const local = (e) => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
-  cv.addEventListener('pointerdown', (e) => {
-    const q = local(e); ptr.x = q.x; ptr.y = q.y;
-    const end = pts[pts.length - 1];
-    // grab the tag (near the end of the string) or the closest point of the string
-    let best = -1; let bd = 1e9;
-    pts.forEach((p, i) => { if (!i) return; const dd = Math.hypot(p.x - q.x, p.y - q.y); if (dd < bd) { bd = dd; best = i; } });
-    const onTag = Math.hypot(end.x - q.x, end.y + TAG.h * S * .5 - q.y) < TAG.h * S * .6;
-    if (onTag) best = pts.length - 1; else if (bd > 40) return;
-    grab = best; cv.setPointerCapture(e.pointerId); cv.classList.add('grabbing');
-  });
-  cv.addEventListener('pointermove', (e) => { const q = local(e); ptr.x = q.x; ptr.y = q.y; });
-  const release = () => { grab = null; cv.classList.remove('grabbing'); };
-  cv.addEventListener('pointerup', release); cv.addEventListener('pointercancel', release);
-
-  const open = (x, y) => {
-    page.style.setProperty('--ox', `${x}px`); page.style.setProperty('--oy', `${y}px`);
-    page.hidden = false; page.scrollTop = 0;
-    requestAnimationFrame(() => requestAnimationFrame(() => page.classList.add('open')));
-    lenis?.stop(); document.documentElement.style.overflow = 'hidden';
-    pts = []; W = 0; H = 0;
-    running = true; cancelAnimationFrame(raf); raf = requestAnimationFrame(loop);
-    if (location.hash !== '#aftrlife') history.replaceState(null, '', '#aftrlife');
-  };
-  const close = () => {
-    page.classList.remove('open');
-    setTimeout(() => { page.hidden = true; running = false; cancelAnimationFrame(raf); }, reduce ? 0 : 1000);
-    lenis?.start(); document.documentElement.style.overflow = '';
-    if (location.hash === '#aftrlife') history.replaceState(null, '', location.pathname + location.search);
-  };
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('[data-aftrlife]'); if (!a) return;
-    e.preventDefault(); e.stopImmediatePropagation(); closeMenu();
-    open(e.clientX || window.innerWidth / 2, e.clientY || 80);
-  }, true);
-  document.getElementById('closeLife').addEventListener('click', close);
-  document.getElementById('closeLife2').addEventListener('click', close);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !page.hidden) close(); });
-  
-  if (location.hash === '#aftrlife') setTimeout(() => open(window.innerWidth / 2, 80), 50);
 })();
 
 /* ---------- Intro ---------- */
