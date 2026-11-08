@@ -1,0 +1,160 @@
+<title>AFTR Logo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;500;600;700&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: a brand sheet. One logo per board, each shown on paper, ink and silk-brown grounds. */
+:root {
+  --paper: #f5f2ed; --stone: #e7e1d7; --ink: #111110; --grey: #77716a; --line: #dcd5ca; --umber: #5b4a3b;
+  --sans: 'Geist', 'Helvetica Neue', Arial, sans-serif; --mono: 'Geist Mono', ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+header { padding-block: 48px 30px; display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+h1 { margin: 0; font-weight: 300; font-size: clamp(40px, 6vw, 76px); letter-spacing: -.04em; line-height: 1; }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); }
+section.board { padding-block: 56px; border-bottom: 1px solid var(--line); display: grid; gap: 20px; }
+.board-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+.board-head h2 { margin: 0; font-weight: 400; font-size: 28px; letter-spacing: -.02em; }
+.board-head p { margin: 0; color: var(--grey); max-width: 52ch; font-size: 15px; }
+.tiles { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 12px; }
+@media (max-width: 800px) { .tiles { grid-template-columns: 1fr; } }
+.tile { border-radius: 4px; min-height: 260px; display: grid; place-items: center; padding: 30px; position: relative; overflow: hidden; }
+.tile svg { width: 100%; max-width: 100%; height: auto; display: block; }
+.tile.paper { background: var(--stone); color: var(--ink); }
+.tile.ink { background: var(--ink); color: var(--paper); }
+.tile.umber { background: var(--umber); color: #f1e9dc; }
+.tile .cap { position: absolute; left: 14px; bottom: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; opacity: .55; }
+.mock { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 800px) { .mock { grid-template-columns: 1fr; } }
+.mock > div { background: var(--stone); border-radius: 4px; min-height: 300px; display: grid; place-items: center; position: relative; padding: 24px; }
+.avatar { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+.avatar svg { width: 100%; height: 100%; display: block; }
+.bag { width: 190px; height: 230px; background: #e9e2d6; border-radius: 3px 3px 6px 6px; position: relative; box-shadow: 0 18px 40px rgba(60,40,20,.18); display: grid; place-items: center; }
+.bag::before { content: ""; position: absolute; top: -38px; left: 50%; width: 80px; height: 60px; margin-left: -40px; border: 5px solid #cbbfad; border-bottom: 0; border-radius: 40px 40px 0 0; }
+.bag svg { width: 120px; height: auto; color: var(--ink); }
+.label { width: 230px; height: 120px; background: var(--ink); color: var(--paper); display: grid; place-items: center; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,.2); position: relative; }
+.label::before, .label::after { content: ""; position: absolute; top: 0; bottom: 0; width: 8px; background: repeating-linear-gradient(#2a2622 0 3px, transparent 3px 6px); }
+.label::before { left: 10px; } .label::after { right: 10px; }
+.label svg { width: 150px; height: auto; }
+.mock .cap { position: absolute; left: 14px; bottom: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); }
+footer { padding-block: 40px 60px; color: var(--grey); font-size: 14px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div><span class="eyebrow">Brand sheet</span><h1 style="margin-top:12px">AFTR logo</h1></div>
+    <span class="eyebrow">Archive Co. · Alicante · Est. 2026</span>
+  </header>
+
+  <section class="board">
+    <div class="board-head"><h2>01 · Wordmark</h2><p>The main logo. Tight, heavy letters with “Archive Co.” spaced out underneath. Use it on the site, bags and Instagram posts.</p></div>
+    <div class="tiles">
+      <div class="tile umber"><div data-logo="wordmark" data-fill="silk"></div><span class="cap">Silk</span></div>
+      <div class="tile paper"><div data-logo="wordmark"></div><span class="cap">Ink</span></div>
+      <div class="tile ink"><div data-logo="wordmark"></div><span class="cap">Paper</span></div>
+    </div>
+  </section>
+
+  <section class="board">
+    <div class="board-head"><h2>02 · Block</h2><p>AF over TR in a square. Made for small spaces: the Instagram and WhatsApp profile picture, the favicon, stickers.</p></div>
+    <div class="tiles">
+      <div class="tile umber"><div style="width:min(240px,70%)" data-logo="block" data-fill="silk"></div><span class="cap">Silk</span></div>
+      <div class="tile paper"><div style="width:min(200px,70%)" data-logo="block"></div><span class="cap">Ink</span></div>
+      <div class="tile ink"><div style="width:min(200px,70%)" data-logo="block"></div><span class="cap">Paper</span></div>
+    </div>
+  </section>
+
+  <section class="board">
+    <div class="board-head"><h2>03 · Seal</h2><p>A round stamp with the name running around an A. For packaging, tissue paper, the Blind Fit box and stickers on bags.</p></div>
+    <div class="tiles">
+      <div class="tile umber"><div style="width:min(260px,80%)" data-logo="seal" data-fill="silk"></div><span class="cap">Silk</span></div>
+      <div class="tile paper"><div style="width:min(220px,80%)" data-logo="seal"></div><span class="cap">Ink</span></div>
+      <div class="tile ink"><div style="width:min(220px,80%)" data-logo="seal"></div><span class="cap">Paper</span></div>
+    </div>
+  </section>
+
+  <section class="board">
+    <div class="board-head"><h2>In use</h2><p>How it looks on a profile picture, a bag and a sewn-in label.</p></div>
+    <div class="mock">
+      <div><div class="avatar" data-logo="avatar"></div><span class="cap">Instagram / WhatsApp</span></div>
+      <div><div class="bag"><div data-logo="seal"></div></div><span class="cap">Bag</span></div>
+      <div><div class="label"><div data-logo="wordmark"></div></div><span class="cap">Label</span></div>
+    </div>
+  </section>
+
+  <footer>The silk version is the colour logo. Black and cream are for printing and single-colour use.</footer>
+</div>
+
+<script>
+// Silk fill: brown marble made with SVG noise, clipped to the letters.
+const silkDefs = (id) => `
+  <filter id="${id}" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="4" seed="7" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1" result="g"/>
+    <feComponentTransfer in="g" result="c">
+      <feFuncR type="table" tableValues="0.16 0.42 0.78 0.95 0.55 0.22"/>
+      <feFuncG type="table" tableValues="0.12 0.34 0.69 0.89 0.46 0.17"/>
+      <feFuncB type="table" tableValues="0.09 0.27 0.58 0.80 0.37 0.13"/>
+      <feFuncA type="table" tableValues="1 1"/>
+    </feComponentTransfer>
+    <feComposite in="c" in2="SourceAlpha" operator="in"/>
+  </filter>`;
+let uid = 0;
+const LOGOS = {
+  wordmark(fill) {
+    const id = `s${uid++}`; const f = fill === 'silk' ? `filter="url(#${id})"` : '';
+    return `<svg viewBox="0 0 600 220" role="img" aria-label="AFTR Archive Co.">
+      <defs>${fill === 'silk' ? silkDefs(id) : ''}</defs>
+      <g ${f} fill="currentColor">
+        <text x="300" y="150" text-anchor="middle" font-family="Geist, Helvetica Neue, Arial, sans-serif" font-weight="700" font-size="172" letter-spacing="-9">AFTR</text>
+      </g>
+      <text x="300" y="196" text-anchor="middle" fill="currentColor" font-family="Geist Mono, monospace" font-weight="500" font-size="15" letter-spacing="13">ARCHIVE CO.</text>
+    </svg>`;
+  },
+  block(fill) {
+    const id = `s${uid++}`; const f = fill === 'silk' ? `filter="url(#${id})"` : '';
+    return `<svg viewBox="0 0 300 300" role="img" aria-label="AFTR">
+      <defs>${fill === 'silk' ? silkDefs(id) : ''}</defs>
+      <g ${f} fill="currentColor" font-family="Geist, Helvetica Neue, Arial, sans-serif" font-weight="700" font-size="150" letter-spacing="-8">
+        <text x="150" y="138" text-anchor="middle">AF</text>
+        <text x="150" y="268" text-anchor="middle">TR</text>
+      </g>
+      <rect x="18" y="153" width="264" height="3" fill="currentColor"/>
+    </svg>`;
+  },
+  seal(fill) {
+    const id = `s${uid++}`; const f = fill === 'silk' ? `filter="url(#${id})"` : '';
+    const p = `c${uid++}`;
+    return `<svg viewBox="0 0 300 300" role="img" aria-label="AFTR Archive Co. seal">
+      <defs>${fill === 'silk' ? silkDefs(id) : ''}<path id="${p}" d="M150,150 m-112,0 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0"/></defs>
+      <g fill="currentColor">
+        <circle cx="150" cy="150" r="142" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="150" cy="150" r="88" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <text font-family="Geist Mono, monospace" font-weight="500" font-size="15" letter-spacing="4.2"><textPath href="#${p}" textLength="696" lengthAdjust="spacing">AFTR · ARCHIVE CO. · ALICANTE · EST. 2026 · </textPath></text>
+      </g>
+      <g ${f} fill="currentColor"><text x="150" y="192" text-anchor="middle" font-family="Geist, Helvetica Neue, Arial, sans-serif" font-weight="700" font-size="128">A</text></g>
+    </svg>`;
+  },
+  avatar() {
+    const id = `s${uid++}`;
+    return `<svg viewBox="0 0 300 300" role="img" aria-label="AFTR profile picture">
+      <defs>${silkDefs(id)}</defs>
+      <rect width="300" height="300" fill="#111110"/>
+      <g filter="url(#${id})" fill="#fff" font-family="Geist, Helvetica Neue, Arial, sans-serif" font-weight="700" font-size="104" letter-spacing="-6">
+        <text x="150" y="146" text-anchor="middle">AF</text>
+        <text x="150" y="238" text-anchor="middle">TR</text>
+      </g>
+      <rect x="72" y="156" width="156" height="2.5" fill="#cfc4b4"/>
+    </svg>`;
+  },
+};
+function renderAll() {
+  document.querySelectorAll('[data-logo]').forEach((el) => { el.innerHTML = LOGOS[el.dataset.logo](el.dataset.fill); });
+}
+renderAll();
+document.fonts?.ready?.then(renderAll);
+</script>
