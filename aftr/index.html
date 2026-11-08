@@ -1,6 +1,6 @@
 <title>AFTR</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="AFTR: authenticated pre-owned clothing, sneakers and home pieces. Second life. First class.">
+<meta name="description" content="AFTR Archive Co.: hand-picked clothing and full fits in Alicante. New batch every month. Order on WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -280,6 +280,41 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
 .inbox .item .who { font-weight: 500; }
 .inbox .item .meta2 { color: var(--grey); font-family: var(--mono); font-size: 11px; }
 
+/* ---------- Blind Fit ---------- */
+.fit { background: var(--ink); color: var(--paper); }
+.fit-grid { padding-block: clamp(60px, 9vw, 120px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 90px); align-items: center; }
+@media (max-width: 900px) { .fit-grid { grid-template-columns: 1fr; } }
+.fit .eyebrow { color: #8f877c; }
+.fit-title { margin: 14px 0 0; font-weight: 300; font-size: clamp(64px, 10vw, 150px); line-height: .85; letter-spacing: -.05em; }
+.fit-title .silk-text { font-weight: 600; filter: brightness(1.7); }
+.fit-lead { color: #a39b90; max-width: 38ch; margin: 22px 0 28px; font-size: 17px; }
+.fit-tabs { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid #3a352f; border-radius: 999px; }
+.fit-tabs button { padding: 10px 20px; border-radius: 999px; font-size: 14px; color: #cfc7bb; }
+.fit-tabs button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+.fit-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; margin-top: 24px; max-width: 520px; }
+.fit-form label { display: grid; gap: 6px; font-size: 12px; color: #8f877c; font-family: var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.fit-form select { font: inherit; font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 15px; color: var(--paper); background: transparent; border: 0; border-bottom: 1px solid #3a352f; padding: 9px 0; border-radius: 0; }
+.fit-form select option { color: #111; }
+.fit-bag { display: flex; gap: 10px; align-items: center; margin-top: 20px; font-size: 15px; cursor: pointer; }
+.fit-bag input { width: 18px; height: 18px; accent-color: #d9cfbf; }
+.fit-bag b { font-weight: 500; color: #d9cfbf; }
+.fit-buy { display: flex; align-items: end; gap: 26px; flex-wrap: wrap; margin-top: 30px; }
+.fit-price { font-weight: 300; font-size: 56px; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.fit-note { margin: 16px 0 0; color: #8f877c; font-size: 13px; }
+.slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.slot { position: relative; aspect-ratio: 3 / 4; border: 1px solid #2f2a25; border-radius: 4px; background: #161412; display: grid; place-items: center; overflow: hidden; animation: slotIn .7s var(--ease) both; animation-delay: calc(var(--i) * 70ms); }
+.slot:first-child { grid-column: span 2; aspect-ratio: auto; }
+.slot:nth-child(6) { grid-column: 1 / -1; aspect-ratio: 3 / 1; }
+.slot .q { font-weight: 600; font-size: clamp(56px, 7vw, 110px); line-height: 1; filter: brightness(1.7); transition: transform .8s var(--ease); }
+.slot:hover .q { transform: rotate(-12deg) scale(1.08); }
+.slot .nm { position: absolute; left: 12px; right: 12px; bottom: 10px; font-size: 13px; color: #cfc7bb; display: flex; gap: 8px; }
+.slot .nm b { font-family: var(--mono); font-weight: 500; font-size: 11px; color: #8f877c; padding-top: 2px; }
+@keyframes slotIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+a[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
+.qv .actions .note-alc { border: 0; height: auto; color: var(--grey); font-size: 12px; }
+#sell .soon { min-height: 70vh; display: grid; align-items: center; padding-block: 60px; }
+@media (prefers-reduced-motion: reduce) { .slot { animation: none; } }
+
 /* ---------- Cursor ---------- */
 .cursor { position: fixed; left: 0; top: 0; z-index: 300; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--ink); pointer-events: none; display: grid; place-items: center; transition: width .45s var(--ease), height .45s var(--ease), margin .45s var(--ease), background .3s; mix-blend-mode: normal; }
 .cursor span { font-size: 12px; font-weight: 500; color: var(--paper); opacity: 0; transition: opacity .3s; }
@@ -305,7 +340,7 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
 
 <div class="cursor" id="cursor" aria-hidden="true"><span>View</span></div>
 
-<div class="notice">Every piece authenticated<span class="long"> · Shipped from Alicante within 48 hours</span></div>
+<div class="notice">Alicante only · Order on WhatsApp<span class="long"> · New batch every month</span></div>
 <header class="top" id="header">
   <div class="wrap">
     <nav class="main" aria-label="Collections">
@@ -316,7 +351,7 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
     </nav>
     <button class="menu-btn" type="button" id="openMenu" aria-label="Open menu">Menu</button>
     <a class="logo silk-text" href="#top" aria-label="AFTR home">AFTR</a>
-    <div class="right"><a class="u-link" href="#sell" data-sell>Sell to us</a><a class="u-link hide-sm" href="#grades">Grading</a><a class="u-link" href="#shop" data-go="all">Shop all</a></div>
+    <div class="right"><a class="u-link hide-sm" href="#sell" data-sell>Sell to us</a><a class="u-link hide-sm" href="#grades">Grading</a><a class="u-link" href="#shop" data-go="all">Shop all</a></div>
   </div>
 </header>
 
@@ -334,13 +369,13 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
   <section class="hero" id="hero">
     <div class="hero-sticky">
       <div class="wrap hero-grid">
-        <div class="meta eyebrow"><span>Archive 01</span><span>Pre-owned · Checked · Graded</span><span>Alicante, ES</span></div>
+        <div class="meta eyebrow"><span>Batch 01</span><span>Hand-picked · One of each</span><span>Alicante, ES</span></div>
         <div class="mark" aria-label="AFTR Archive Co.">
           <canvas id="silk" aria-hidden="true"></canvas>
           <div class="mark-fallback silk-text" aria-hidden="true">AFTR</div>
           <div class="door" id="door">
-            <h1>Second life.<br>First class.</h1>
-            <a class="btn dark" href="#shop" data-go="all">Enter the archive <span class="arr" aria-hidden="true">→</span></a>
+            <h1>Here this month.<br>Gone the next.</h1>
+            <a class="btn dark" href="#shop" data-go="all">Shop the batch <span class="arr" aria-hidden="true">→</span></a>
           </div>
         </div>
         <div class="sub"><span class="eyebrow">Est. 2026</span><span class="co">ARCHIVE CO.</span><span class="eyebrow hint">Scroll <i></i></span></div>
@@ -362,12 +397,41 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
 
   <section class="statement">
     <div class="wrap">
-      <span class="eyebrow">The AFTR standard</span>
-      <p style="margin-top:18px">Great pieces deserve more than one owner. <em>We find them, check them and give them a second life.</em></p>
+      <span class="eyebrow">How AFTR works</span>
+      <p style="margin-top:18px">A new batch every month. One of each piece. <em>When it’s gone, it’s gone.</em></p>
       <div class="cols">
-        <div><b>Authenticated</b><span>Labels, stitching and codes checked by hand.</span></div>
-        <div><b>Cleaned &amp; graded</b><span>Washed or steamed, measured, flaws photographed.</span></div>
-        <div><b>Sent in 48 hours</b><span>Packed with care in Alicante.</span></div>
+        <div><b>Hand-picked</b><span>Every piece chosen one by one. No restocks, no repeats.</span></div>
+        <div><b>Order on WhatsApp</b><span>Message us the piece you want. We confirm and sort it out with you.</span></div>
+        <div><b>Alicante only, for now</b><span>Pick it up or we bring it to you in Alicante.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fit" id="fit" data-dark>
+    <div class="wrap fit-grid">
+      <div class="fit-copy">
+        <span class="eyebrow">The surprise box</span>
+        <h2 class="fit-title"><span class="silk-text">Blind</span> Fit.</h2>
+        <p class="fit-lead">Give us your sizes. We pick the whole outfit, head to toe. You open the box.</p>
+        <div class="fit-tabs" role="group" aria-label="Who is it for">
+          <button type="button" data-who="him" aria-pressed="true">For him</button>
+          <button type="button" data-who="her" aria-pressed="false">For her</button>
+        </div>
+        <div class="fit-form">
+          <label>Top size<select id="fitTop"><option>XS</option><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option></select></label>
+          <label>Pants size<select id="fitPants"><option>XS</option><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option></select></label>
+          <label>Shoe size<select id="fitShoe"></select></label>
+          <label>Vibe<select id="fitVibe"><option>Surprise me</option><option>Clean</option><option>Street</option><option>Sporty</option></select></label>
+        </div>
+        <label class="fit-bag" id="fitBagRow" hidden><input type="checkbox" id="fitBag"> <span>Add a bag, our pick <b id="fitBagPrice"></b></span></label>
+        <div class="fit-buy">
+          <div><span class="eyebrow">Total</span><div class="fit-price" id="fitPrice"></div></div>
+          <a class="btn light" id="fitOrder" href="#" target="_blank" rel="noopener">Order on WhatsApp <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <p class="fit-note" id="fitNote">Alicante only. We message you to confirm before we put it together.</p>
+      </div>
+      <div class="fit-box" aria-label="What’s in the box">
+        <div class="slots" id="fitSlots"></div>
       </div>
     </div>
   </section>
@@ -395,7 +459,7 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
 
   <section class="grades" id="grades">
     <div class="wrap">
-      <div class="sec-head"><h2>Our grading</h2><span class="eyebrow">Every piece is graded out of 10</span></div>
+      <div class="sec-head"><h2>Condition</h2><span class="eyebrow">Every piece is graded out of 10</span></div>
       <div class="table">
         <div><b>10</b><strong>New with tags</strong><span>Never worn. Original tags attached.</span></div>
         <div><b>9</b><strong>Like new</strong><span>Worn once or twice. No visible wear.</span></div>
@@ -409,9 +473,9 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
 <footer data-dark>
   <div class="wrap">
     <div class="cols">
-      <div><span class="eyebrow">AFTR</span><span style="max-width:32ch; color:#cfc7bb">Authenticated pre-owned clothing, sneakers and home pieces, from Alicante to Europe.</span></div>
+      <div><span class="eyebrow">AFTR</span><span style="max-width:32ch; color:#cfc7bb">Hand-picked clothing and full fits. A new batch every month. Alicante only, for now.</span></div>
       <div><span class="eyebrow">Shop</span><a href="#shop" data-go="women">Women</a><a href="#shop" data-go="men">Men</a><a href="#shop" data-go="unisex">Unisex</a><a href="#shop" data-go="home">Home</a></div>
-      <div><span class="eyebrow">Follow</span><span>Instagram</span><span>TikTok</span><span>Vinted</span></div>
+      <div><span class="eyebrow">Follow</span><span>Instagram</span><span>TikTok</span><span>WhatsApp</span></div>
       <div><span class="eyebrow">Info</span><a href="#sell" data-sell>Sell to us</a><a href="#grades">Grading</a><button type="button" id="replay" style="text-align:left">Replay intro</button></div>
     </div>
     <div class="big silk-text" aria-hidden="true">AFTR</div>
@@ -421,71 +485,14 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
 </footer>
 
 <div id="sell" hidden role="dialog" aria-modal="true" aria-label="Sell to AFTR">
-  <div class="bar"><span class="logo silk-text">AFTR</span><button type="button" class="u-link" id="closeSell">Back to the archive</button></div>
-
-  <section class="open-statement">
+  <div class="bar"><span class="logo silk-text">AFTR</span><button type="button" class="u-link" id="closeSell">Back to the shop</button></div>
+  <section class="soon">
     <div class="wrap">
       <span class="eyebrow">Sell to AFTR</span>
-      <h2 class="big" style="margin-top:18px">Your closet is full of <b class="silk-text">second lives.</b></h2>
-      <p class="lead">The jacket you haven’t worn since last winter. The sneakers that were never quite your size. Send them to us and we give them an after.</p>
-      <div class="steps3">
-        <div><b>Tell us what you have</b><span>Brand, size, condition and a few photos. Two minutes.</span></div>
-        <div><b>Get an offer</b><span>We check it’s authentic and send you a price within 48 hours.</span></div>
-        <div><b>Get paid</b><span>Drop it off in Alicante or we arrange pickup. Paid on hand-over.</span></div>
-      </div>
+      <h2 class="big" style="margin-top:18px">Coming <b class="silk-text">soon.</b></h2>
+      <p class="lead">Soon you’ll be able to bring us your pieces and get paid for them. Follow @aftr.store to hear first.</p>
+      <button type="button" class="btn dark" id="closeSell2" style="margin-top:34px">Back to the shop <span class="arr" aria-hidden="true">→</span></button>
     </div>
-  </section>
-
-  <section class="calc" data-dark>
-    <div class="wrap">
-      <div>
-        <h3>What’s your closet worth?</h3>
-        <p class="sub">Count what you don’t wear any more.</p>
-        <div class="rows" id="calcRows"></div>
-      </div>
-      <div class="total" aria-live="polite">
-        <span class="eyebrow">Your closet could be worth around</span>
-        <div class="amount silk-text" id="calcTotal">€0</div>
-        <p id="calcNote">A rough guide for branded pieces in good condition. Your real offer comes after we see them.</p>
-        <a class="btn light" href="#sellForm" id="toForm">Get my real offer <span class="arr" aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap formwrap" id="sellForm">
-    <div>
-      <span class="eyebrow">Submit a piece</span>
-      <h3 style="margin-top:14px">Tell us about it.</h3>
-      <div class="rules">
-        <span><b>Authentic only.</b> We check every piece. Replicas are refused.</span>
-        <span><b>Clean and complete.</b> Washed, no big damage, with the box or tags if you have them.</span>
-        <span><b>Brands we love:</b> Nike, Adidas, New Balance, Carhartt, Stüssy, Ralph Lauren, The North Face, Patagonia, Arc’teryx, COS, plus good homeware.</span>
-      </div>
-    </div>
-    <div style="display:grid; gap:18px; min-width:0">
-      <form class="sellf" id="sellf" novalidate>
-        <label>Your name<input id="sf-name" name="name" autocomplete="name" required></label>
-        <label>Instagram or phone<input id="sf-contact" name="contact" placeholder="@you or +34…" required></label>
-        <div class="full" style="display:grid; gap:8px"><span style="font-size:13px; color:var(--grey)">What is it?</span>
-          <div class="choice2" id="sf-cat" role="group" aria-label="Category">
-            <button type="button" data-v="Clothing" aria-pressed="true">Clothing</button><button type="button" data-v="Sneakers" aria-pressed="false">Sneakers</button><button type="button" data-v="Bag / accessory" aria-pressed="false">Bag / accessory</button><button type="button" data-v="Home" aria-pressed="false">Home</button>
-          </div></div>
-        <label>Brand<input id="sf-brand" name="brand" required></label>
-        <label>Item<input id="sf-item" name="item" placeholder="e.g. Nuptse jacket" required></label>
-        <label>Size<input id="sf-size" name="size"></label>
-        <label>Condition<select id="sf-cond" name="condition"><option>New with tags</option><option selected>Like new</option><option>Very good</option><option>Good, some wear</option></select></label>
-        <label class="full">Anything else? (where you bought it, flaws, price you hope for)<textarea id="sf-notes" name="notes"></textarea></label>
-        <label class="check full"><input type="checkbox" id="sf-auth" required> I confirm this piece is authentic and mine to sell.</label>
-        <div class="full"><button class="btn dark" type="submit">Send for an offer <span class="arr" aria-hidden="true">→</span></button></div>
-      </form>
-      <div id="sellMsg" hidden></div>
-    </div>
-  </section>
-
-  <section class="wrap inbox" id="inbox" hidden>
-    <span class="eyebrow">Only you see this</span>
-    <h3 style="margin:10px 0 20px; font-weight:300; font-size:36px; letter-spacing:-.03em">Submissions</h3>
-    <div id="inboxList"><p style="color:var(--grey)">No submissions yet.</p></div>
   </section>
 </div>
 
@@ -514,6 +521,22 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
    vinted / wallapop: listing links ("" if none)
    example: true marks a placeholder piece. Delete those when real pieces arrive.
    ===================================================================== */
+/* =====================================================================
+   SHOP SETTINGS
+   WHATSAPP: your number with country code, digits only (e.g. '34612345678').
+   FIT_PRICE / BAG_EXTRA: Blind Fit price and the extra for a bag.
+   ===================================================================== */
+const WHATSAPP = '';
+const FIT_PRICE = 99;
+const BAG_EXTRA = 25;
+const waLink = (text) => (WHATSAPP ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}` : null);
+function setWhatsApp(a, text) {
+  const url = waLink(text);
+  if (url) { a.href = url; a.removeAttribute('aria-disabled'); a.title = ''; }
+  else { a.href = '#'; a.setAttribute('aria-disabled', 'true'); a.title = 'WhatsApp number not added yet'; }
+}
+document.addEventListener('click', (e) => { const a = e.target.closest('a[aria-disabled="true"]'); if (a) { e.preventDefault(); e.stopImmediatePropagation(); } }, true);
+
 const PRODUCTS = [
   { id: 'k1', example: true, section: 'unisex', brand: 'AFTR Selection', name: 'Brushed knit sweater', size: 'M', grade: 9, price: 49, retail: null, color: 'Black / Off-white', notes: 'Test piece. Fluffy brushed knit with an abstract black and off-white pattern, crew neck, ribbed cuffs and hem. Relaxed, slightly cropped fit. Soft and warm.', photos: ['img/knit-black-white.jpg'], vinted: '', wallapop: '', sold: false },
   { id: 'w1', example: true, section: 'women', brand: 'Max Mara', name: 'Wool wrap coat', size: 'S', grade: 9, price: 210, retail: 690, color: 'Camel', notes: 'Example piece. Heavy wool, clean lining, belt included.', photos: [], vinted: '', wallapop: '', sold: false },
@@ -597,8 +620,9 @@ grid.addEventListener('click', (e) => {
   const acts = [];
   if (p.sold) acts.push('<span>Sold</span>');
   else {
-    acts.push(p.vinted ? `<a class="primary" href="${esc(p.vinted)}" target="_blank" rel="noopener">Buy on Vinted <span aria-hidden="true">↗</span></a>` : '<span>Available soon on Vinted</span>');
-    if (p.wallapop) acts.push(`<a class="secondary" href="${esc(p.wallapop)}" target="_blank" rel="noopener">Buy on Wallapop <span aria-hidden="true">↗</span></a>`);
+    const url = waLink(`Hi AFTR! I want ${archNo(p)}: ${p.brand} ${p.name} (size ${p.size}, ${eur(p.price)}). Is it still available? I'm in Alicante.`);
+    acts.push(url ? `<a class="primary" href="${esc(url)}" target="_blank" rel="noopener">Order on WhatsApp <span aria-hidden="true">↗</span></a>` : '<span>Order on WhatsApp · number coming soon</span>');
+    acts.push('<span class="note-alc">Alicante only · pickup or local delivery</span>');
   }
   document.getElementById('qvActions').innerHTML = acts.join('');
   qv.showModal();
@@ -787,132 +811,61 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   requestAnimationFrame(draw);
 })();
 
-/* ---------- Sell page ---------- */
+/* ---------- Sell page (coming soon) ---------- */
 (function sellPage() {
-  // Rough guide per piece (euros). Change these to your real buying prices.
-  const GUIDE = [
-    ['Jackets & coats', 'puffers, fleeces, workwear', 35],
-    ['Hoodies & knits', 'sweatshirts, jumpers, cardigans', 15],
-    ['Sneakers', 'in good condition', 30],
-    ['Jeans & trousers', 'denim, cargos, joggers', 12],
-    ['T-shirts & tops', 'graphic tees, shirts', 6],
-    ['Bags & accessories', 'bags, caps, belts', 15],
-    ['Home pieces', 'lamps, ceramics, textiles', 10],
-  ];
-  const q = GUIDE.map(() => 0);
-  const rows = document.getElementById('calcRows');
-  const totalEl = document.getElementById('calcTotal');
-  rows.innerHTML = GUIDE.map(([n, d], i) => `
-    <div class="rowq"><div class="nm">${n}<span>${d}</span></div>
-      <div class="stepper"><button type="button" data-i="${i}" data-d="-1" aria-label="Fewer ${n}">−</button><output id="q${i}">0</output><button type="button" data-i="${i}" data-d="1" aria-label="More ${n}">+</button></div></div>`).join('');
-  let shown = 0; let anim = 0;
-  const animateTo = (target) => {
-    cancelAnimationFrame(anim);
-    const from = shown; const t0 = performance.now();
-    const step = (t) => { const k = Math.min(1, (t - t0) / 500); shown = Math.round(from + (target - from) * (1 - Math.pow(1 - k, 3))); totalEl.textContent = `€${shown.toLocaleString()}`; if (k < 1) anim = requestAnimationFrame(step); };
-    anim = requestAnimationFrame(step);
-  };
-  rows.addEventListener('click', (e) => {
-    const b = e.target.closest('[data-i]'); if (!b) return;
-    const i = Number(b.dataset.i); q[i] = Math.max(0, Math.min(50, q[i] + Number(b.dataset.d)));
-    document.getElementById(`q${i}`).textContent = q[i];
-    const total = q.reduce((sum, n, j) => sum + n * GUIDE[j][2], 0);
-    const count = q.reduce((a, b2) => a + b2, 0);
-    if (reduce) { shown = total; totalEl.textContent = `€${total.toLocaleString()}`; } else animateTo(total);
-    document.getElementById('calcNote').textContent = count
-      ? `${count} piece${count === 1 ? '' : 's'}. A rough guide for authentic branded pieces in good condition. Your real offer comes after we see them.`
-      : 'A rough guide for branded pieces in good condition. Your real offer comes after we see them.';
-  });
-
-  // Category choice
-  let cat = 'Clothing';
-  document.getElementById('sf-cat').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-v]'); if (!b) return; cat = b.dataset.v;
-    document.querySelectorAll('#sf-cat button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-  });
-
-  // Storage: claude.ai shared db when available; otherwise show a message to copy.
-  let db = null; let me = null; let isOwner = false;
-  const ready = (async () => {
-    try {
-      if (!window.claude?.use) return;
-      [db, me] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
-      isOwner = me ? await me.isOwner() : false;
-    } catch { db = null; }
-  })();
-
-  const form = document.getElementById('sellf'); const msg = document.getElementById('sellMsg');
-  const show = (cls, html) => { msg.hidden = false; msg.className = `formmsg ${cls}`; msg.innerHTML = html; };
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const v = (id) => document.getElementById(id).value.trim();
-    const entry = { name: v('sf-name'), contact: v('sf-contact'), category: cat, brand: v('sf-brand'), item: v('sf-item'), size: v('sf-size'), condition: v('sf-cond'), notes: v('sf-notes'), at: new Date().toISOString() };
-    if (!entry.name || !entry.contact || !entry.brand || !entry.item) { show('err', 'Please fill in your name, contact, brand and item.'); return; }
-    if (!document.getElementById('sf-auth').checked) { show('err', 'Please confirm the piece is authentic and yours to sell.'); return; }
-    const btn = form.querySelector('button[type=submit]'); btn.disabled = true;
-    await ready;
-    let saved = false;
-    try {
-      const uid = db && me ? await me.id() : null;
-      if (uid) {
-        const ref = db.doc(`submissions/${uid}`);
-        const snap = await ref.get();
-        const items = (snap.exists && Array.isArray(snap.data().items)) ? snap.data().items : [];
-        await ref.set({ items: [...items, entry].slice(-30), updatedAt: entry.at });
-        saved = true;
-      }
-    } catch { saved = false; }
-    btn.disabled = false;
-    if (saved) {
-      form.reset(); form.hidden = true;
-      show('ok', `<b>Sent.</b> Thanks ${esc(entry.name.split(' ')[0])}, we’ll reply to ${esc(entry.contact)} with an offer within 48 hours. <button type="button" class="u-link" id="another" style="margin-left:8px">Send another piece</button>`);
-      document.getElementById('another').onclick = () => { form.hidden = false; msg.hidden = true; };
-      loadInbox();
-    } else {
-      const text = `Hi AFTR! I'd like an offer:\n${entry.category}: ${entry.brand} ${entry.item}\nSize: ${entry.size || '-'} · Condition: ${entry.condition}\n${entry.notes ? `Notes: ${entry.notes}\n` : ''}Name: ${entry.name} · Contact: ${entry.contact}`;
-      show('err', `We couldn’t send it from here. Copy this and DM it to <b>@aftr.store</b> on Instagram, with photos:<div class="copybox" style="margin-top:10px">${esc(text)}</div>`);
-    }
-  });
-
-  // Owner inbox
-  async function loadInbox() {
-    await ready;
-    if (!db || !isOwner) return;
-    document.getElementById('inbox').hidden = false;
-    try {
-      const snap = await db.collection('submissions').get();
-      const all = snap.docs.flatMap((d) => (d.data()?.items || [])).sort((a, b) => String(b.at).localeCompare(String(a.at)));
-      document.getElementById('inboxList').innerHTML = all.length ? all.map((x) => `
-        <div class="item"><div><span class="who">${esc(x.brand)} ${esc(x.item)}</span> · ${esc(x.category)} · ${esc(x.size || '-')} · ${esc(x.condition)}
-          ${x.notes ? `<div style="color:var(--grey); margin-top:4px">${esc(x.notes)}</div>` : ''}</div>
-          <div style="text-align:right">${esc(x.name)}<div class="meta2">${esc(x.contact)} · ${esc(String(x.at).slice(0, 10))}</div></div></div>`).join('')
-        : '<p style="color:var(--grey)">No submissions yet.</p>';
-    } catch { document.getElementById('inboxList').innerHTML = '<p style="color:var(--grey)">Couldn’t load submissions.</p>'; }
-  }
-
-  // Open / close
   const page = document.getElementById('sell');
   const open = () => {
     page.hidden = false; page.scrollTop = 0;
     requestAnimationFrame(() => requestAnimationFrame(() => page.classList.add('open')));
     lenis?.stop(); document.documentElement.style.overflow = 'hidden';
-    if (location.hash !== '#sell') history.replaceState(null, '', '#sell');
-    loadInbox();
   };
   const close = () => {
     page.classList.remove('open');
     setTimeout(() => { page.hidden = true; }, reduce ? 0 : 900);
     lenis?.start(); document.documentElement.style.overflow = '';
-    if (location.hash === '#sell') history.replaceState(null, '', location.pathname + location.search);
   };
   document.addEventListener('click', (e) => {
     if (!e.target.closest('[data-sell]')) return;
     e.preventDefault(); e.stopImmediatePropagation(); closeMenu(); open();
   }, true);
-  document.getElementById('toForm').addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); document.getElementById('sellForm').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); });
   document.getElementById('closeSell').addEventListener('click', close);
+  document.getElementById('closeSell2').addEventListener('click', close);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !page.hidden) close(); });
-  if (location.hash === '#sell') setTimeout(open, 50);
+})();
+
+/* ---------- Blind Fit (surprise box) ---------- */
+(function blindFit() {
+  const ITEMS = {
+    him: ['Hat', 'Pants', 'Shirt, sweatshirt or hoodie', 'Shoes', 'Glasses'],
+    her: ['Hat', 'Pants', 'Shirt, sweatshirt or hoodie', 'Shoes', 'Glasses'],
+  };
+  let who = 'him';
+  const shoe = document.getElementById('fitShoe');
+  const fillShoes = () => {
+    const [lo, hi, def] = who === 'her' ? [35, 42, 38] : [38, 47, 42];
+    shoe.innerHTML = Array.from({ length: hi - lo + 1 }, (_, i) => lo + i).map((n) => `<option${n === def ? ' selected' : ''}>EU ${n}</option>`).join('');
+  };
+  const bagRow = document.getElementById('fitBagRow'); const bag = document.getElementById('fitBag');
+  document.getElementById('fitBagPrice').textContent = `+${eur(BAG_EXTRA)}`;
+  const slots = document.getElementById('fitSlots');
+  const render = () => {
+    const list = [...ITEMS[who], ...(who === 'her' && bag.checked ? ['Bag'] : [])];
+    slots.innerHTML = list.map((it, i) => `<div class="slot" style="--i:${i}"><span class="q silk-text">?</span><span class="nm"><b>${String(i + 1).padStart(2, '0')}</b>${esc(it)}</span></div>`).join('');
+    const total = FIT_PRICE + (who === 'her' && bag.checked ? BAG_EXTRA : 0);
+    document.getElementById('fitPrice').textContent = eur(total);
+    const v = (id) => document.getElementById(id).value;
+    const msg = `Hi AFTR! I want a Blind Fit (${who === 'him' ? 'for him' : 'for her'}).\nTop: ${v('fitTop')} · Pants: ${v('fitPants')} · Shoes: ${v('fitShoe')}\nVibe: ${v('fitVibe')}${who === 'her' && bag.checked ? '\nPlus a bag (+' + eur(BAG_EXTRA) + ')' : ''}\nTotal: ${eur(total)} · Alicante`;
+    setWhatsApp(document.getElementById('fitOrder'), msg);
+  };
+  document.querySelector('.fit-tabs').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-who]'); if (!b) return;
+    who = b.dataset.who;
+    document.querySelectorAll('.fit-tabs button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    bagRow.hidden = who !== 'her'; if (who !== 'her') bag.checked = false;
+    fillShoes(); render();
+  });
+  ['fitTop', 'fitPants', 'fitShoe', 'fitVibe', 'fitBag'].forEach((id) => document.getElementById(id).addEventListener('change', render));
+  fillShoes(); render();
 })();
 
 /* ---------- Touches ---------- */
