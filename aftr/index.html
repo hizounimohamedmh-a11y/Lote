@@ -281,6 +281,12 @@ form.sellf input:focus, form.sellf select:focus, form.sellf textarea:focus { out
 .inbox .item .meta2 { color: var(--grey); font-family: var(--mono); font-size: 11px; }
 
 /* ---------- Blind Fit ---------- */
+.fit-tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; max-width: 520px; }
+.fit-tiers button { text-align: left; border: 1px solid #3a352f; border-radius: 6px; padding: 14px 16px; display: grid; gap: 2px; color: #cfc7bb; transition: border-color .3s, background .3s; }
+.fit-tiers button b { font-weight: 500; color: var(--paper); }
+.fit-tiers button span { font-size: 22px; font-weight: 300; letter-spacing: -.02em; color: var(--paper); font-variant-numeric: tabular-nums; }
+.fit-tiers button i { font-style: normal; font-size: 12px; color: #8f877c; }
+.fit-tiers button[aria-pressed="true"] { border-color: #d9cfbf; background: #1c1916; }
 .fit { background: var(--ink); color: var(--paper); }
 .fit-grid { padding-block: clamp(60px, 9vw, 120px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 90px); align-items: center; }
 @media (max-width: 900px) { .fit-grid { grid-template-columns: 1fr; } }
@@ -417,6 +423,10 @@ a[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
           <button type="button" data-who="him" aria-pressed="true">For him</button>
           <button type="button" data-who="her" aria-pressed="false">For her</button>
         </div>
+        <div class="fit-tiers" role="group" aria-label="Box">
+          <button type="button" data-tier="standard" aria-pressed="true"><b>Blind Fit</b><span id="tierStd"></span></button>
+          <button type="button" data-tier="plus" aria-pressed="false"><b>Blind Fit Plus</b><span id="tierPlus"></span><i>Better pieces</i></button>
+        </div>
         <div class="fit-form">
           <label>Top size<select id="fitTop"><option>XS</option><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option></select></label>
           <label>Pants size<select id="fitPants"><option>XS</option><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option></select></label>
@@ -515,6 +525,7 @@ a[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
 <script>
 /* =====================================================================
    PRODUCTS: edit this list to add your pieces.
+   Give `cost: 30` (what you paid) and leave out `price`: the price is set by the pricing rule above.
    section: "women" | "men" | "unisex" | "home"
    grade: 10 new with tags · 9 like new · 8 very good · 7 good
    photos: image links (first two are used on the card: main + hover)
@@ -527,8 +538,15 @@ a[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
    FIT_PRICE / BAG_EXTRA: Blind Fit price and the extra for a bag.
    ===================================================================== */
 const WHATSAPP = '';
-const FIT_PRICE = 99;
-const BAG_EXTRA = 25;
+const FIT_TIERS = { standard: { name: 'Blind Fit', price: 149 }, plus: { name: 'Blind Fit Plus', price: 239 } };
+const BAG_EXTRA = 39;
+// Pricing rule: give a product `cost` (what you paid) instead of `price`, and the price comes from this table.
+// Cost is rounded up to the next €5. Under €20 → €59, over €65 → cost × 2.5 ending in 9.
+const PRICE_TABLE = { 20: 59, 25: 75, 30: 89, 35: 99, 40: 109, 45: 119, 50: 129, 55: 139, 60: 149, 65: 159 };
+function priceFromCost(cost) {
+  const band = Math.max(20, Math.ceil(cost / 5) * 5);
+  return PRICE_TABLE[band] ?? Math.ceil((cost * 2.5 + 1) / 10) * 10 - 1;
+}
 const waLink = (text) => (WHATSAPP ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}` : null);
 function setWhatsApp(a, text) {
   const url = waLink(text);
@@ -557,6 +575,7 @@ const PRODUCTS = [
   { id: 'h4', example: true, section: 'home', brand: 'Zara Home', name: 'Wool throw', size: '130 × 170 cm', grade: 10, price: 28, retail: 59.99, color: 'Cream', notes: 'Example piece. Unused.', photos: [], vinted: '', wallapop: '', sold: false },
 ];
 
+PRODUCTS.forEach((p) => { if (p.price == null && typeof p.cost === 'number') p.price = priceFromCost(p.cost); });
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const eur = (n) => `€${Number.isInteger(n) ? n : n.toFixed(2)}`;
 const GRADE = { 10: 'New with tags', 9: 'Like new', 8: 'Very good', 7: 'Good' };
@@ -839,7 +858,14 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     him: ['Hat', 'Pants', 'Shirt, sweatshirt or hoodie', 'Shoes', 'Glasses'],
     her: ['Hat', 'Pants', 'Shirt, sweatshirt or hoodie', 'Shoes', 'Glasses'],
   };
-  let who = 'him';
+  let who = 'him'; let tier = 'standard';
+  document.getElementById('tierStd').textContent = eur(FIT_TIERS.standard.price);
+  document.getElementById('tierPlus').textContent = eur(FIT_TIERS.plus.price);
+  document.querySelector('.fit-tiers').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-tier]'); if (!b) return; tier = b.dataset.tier;
+    document.querySelectorAll('.fit-tiers button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    render();
+  });
   const shoe = document.getElementById('fitShoe');
   const fillShoes = () => {
     const [lo, hi, def] = who === 'her' ? [35, 42, 38] : [38, 47, 42];
@@ -851,10 +877,10 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   const render = () => {
     const list = [...ITEMS[who], ...(who === 'her' && bag.checked ? ['Bag'] : [])];
     slots.innerHTML = list.map((it, i) => `<div class="slot" style="--i:${i}"><span class="q silk-text">?</span><span class="nm"><b>${String(i + 1).padStart(2, '0')}</b>${esc(it)}</span></div>`).join('');
-    const total = FIT_PRICE + (who === 'her' && bag.checked ? BAG_EXTRA : 0);
+    const total = FIT_TIERS[tier].price + (who === 'her' && bag.checked ? BAG_EXTRA : 0);
     document.getElementById('fitPrice').textContent = eur(total);
     const v = (id) => document.getElementById(id).value;
-    const msg = `Hi AFTR! I want a Blind Fit (${who === 'him' ? 'for him' : 'for her'}).\nTop: ${v('fitTop')} · Pants: ${v('fitPants')} · Shoes: ${v('fitShoe')}\nVibe: ${v('fitVibe')}${who === 'her' && bag.checked ? '\nPlus a bag (+' + eur(BAG_EXTRA) + ')' : ''}\nTotal: ${eur(total)} · Alicante`;
+    const msg = `Hi AFTR! I want a ${FIT_TIERS[tier].name} (${who === 'him' ? 'for him' : 'for her'}).\nTop: ${v('fitTop')} · Pants: ${v('fitPants')} · Shoes: ${v('fitShoe')}\nVibe: ${v('fitVibe')}${who === 'her' && bag.checked ? '\nPlus a bag (+' + eur(BAG_EXTRA) + ')' : ''}\nTotal: ${eur(total)} · Alicante`;
     setWhatsApp(document.getElementById('fitOrder'), msg);
   };
   document.querySelector('.fit-tabs').addEventListener('click', (e) => {
